@@ -49,7 +49,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext value)
     {
+
         Vector2 inputMovement = value.ReadValue<Vector2>();
         rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
     }
+
+    public void OnDodge(InputAction.CallbackContext ctx)
+    {
+  
+        if (ctx.performed)
+        {
+            playerAnim.PlayDodgeAnimation();
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            playerAnim.PlayJumpAnimation();
+        }
+    }
+
 }

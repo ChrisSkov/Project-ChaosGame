@@ -51,7 +51,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 57d832d513c52654882700c7e21c1fe8, type: 3}
   m_Controller: {fileID: 9100000, guid: dbe660d8fab8ee243a157c19d6507ac2, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -175,8 +175,8 @@ MonoBehaviour:
     m_ActionName: Menu Controls/TogglePause[/Keyboard/p,/DualShock4GamepadHID/start]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1920151324251297249}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1920151324251297274}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -189,6 +189,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f5d55e1a-5070-4900-812d-10ad26f9a516
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1920151324251297274}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDodge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a50c4f1b-8945-4925-94a4-5c7f3119adfe
+    m_ActionName: Player/Dodge[/DualShock4GamepadHID/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
