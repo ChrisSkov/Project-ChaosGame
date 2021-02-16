@@ -50,9 +50,9 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 57d832d513c52654882700c7e21c1fe8, type: 3}
   m_Controller: {fileID: 9100000, guid: dbe660d8fab8ee243a157c19d6507ac2, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -173,6 +173,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: edf6ec12-f206-4ba9-bbe1-3afef562217d
     m_ActionName: Menu Controls/TogglePause[/Keyboard/p,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1920151324251297249}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f5d55e1a-5070-4900-812d-10ad26f9a516
+    m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -221,6 +237,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   movementSpeed: 5
   turnSpeed: 0.1
+  jumpForce: 2
 --- !u!114 &1920151324251297276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +305,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FarmerTattieTopDownTest
       objectReference: {fileID: 0}
+    - target: {fileID: 7173316306714432937, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173316306714432937, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00129
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6283715342335741857, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
@@ -296,3 +321,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 131749097649853915, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
   m_PrefabInstance: {fileID: 1920151325153899155}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &8730511930184181562 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7173316306714432937, guid: 465e0c0265f392a468a7b2a52f2294de, type: 3}
+  m_PrefabInstance: {fileID: 1920151325153899155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2677875442634571683
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8730511930184181562}
+    m_Modifications:
+    - target: {fileID: 3863645689640269617, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_Name
+      value: Shovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0042640935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0042640944
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0042640944
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0009
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527733788923030923, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b81db98ca6dcce44a463da525cdbc28, type: 3}

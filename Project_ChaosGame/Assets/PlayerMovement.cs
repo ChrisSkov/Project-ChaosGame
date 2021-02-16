@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Camera mainCamera;
     public float movementSpeed = 5f;
     public float turnSpeed = 5f;
+    public float jumpForce = 5f;
 
     Vector3 movementDirection;
     Rigidbody rb;
@@ -51,7 +53,13 @@ public class PlayerMovement : MonoBehaviour
     {
         movementDirection = newMovementDirection;
     }
-
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        if (ctx.ReadValueAsButton())
+        {
+            rb.AddForce(movementDirection.x, jumpForce, movementDirection.z, ForceMode.Impulse);
+        }
+    }
     void MoveThePlayer()
     {
         Vector3 movement = CameraDirection(movementDirection) * movementSpeed * Time.deltaTime;
