@@ -27,7 +27,7 @@
                     "id": "72269935-7e11-4392-8ed0-bffd18ac9811",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap"
                 },
                 {
                     "name": "Dodge",
@@ -35,7 +35,7 @@
                     "id": "a50c4f1b-8945-4925-94a4-5c7f3119adfe",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": ""
                 },
                 {
                     "name": "Jump",
@@ -183,7 +183,7 @@
                     "name": "",
                     "id": "3ce49713-8c8b-45c0-8474-7df3a14ee441",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
@@ -194,7 +194,7 @@
                     "name": "",
                     "id": "bb7e8f46-efbb-42cb-872c-cf60721a413c",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "MultiTap",
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",

@@ -51,7 +51,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 57d832d513c52654882700c7e21c1fe8, type: 3}
   m_Controller: {fileID: 9100000, guid: dbe660d8fab8ee243a157c19d6507ac2, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -253,7 +253,6 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   movementSpeed: 5
   turnSpeed: 0.1
-  jumpForce: 2
 --- !u!114 &1920151324251297276
 MonoBehaviour:
   m_ObjectHideFlags: 0
