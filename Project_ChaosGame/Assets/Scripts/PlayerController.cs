@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 smoothInputMovement;
     public PlayerAnimation playerAnim;
     public PlayerMovement playerMove;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         playerMove.SetupBehaviour();
         playerAnim.SetupBehaviour();
     }

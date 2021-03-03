@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     private int playerAttackAnimationID;
     private int playerDodgeAnimID;
     private int playerJumpAnimID;
+    private int playerExitAnimID;
 
     public void SetupBehaviour()
     {
@@ -36,6 +37,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAttackAnimationID = Animator.StringToHash("attack");
         playerDodgeAnimID = Animator.StringToHash("dodge");
         playerJumpAnimID = Animator.StringToHash("jump");
+        playerExitAnimID = Animator.StringToHash("exit");
     }
 
     public void UpdateMovementAnimation(float movementBlendValue)
@@ -44,6 +46,10 @@ public class PlayerAnimation : MonoBehaviour
         playerAnimator.SetFloat(playerMovementAnimationID, movementBlendValue);
     }
 
+    public void ExitAnim()
+    {
+        playerAnimator.SetTrigger(playerExitAnimID);
+    }
     public void PlayAttackAnimation()
     {
         playerAnimator.SetTrigger(playerAttackAnimationID);
