@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BarrelHealth : MonoBehaviour
 {
+
+    public PlayerScriptObj player;
     public GameObject explosion;
     public bool isTriggered = false;
     public bool triggeredByBarrel = false;
     public float timer;
     public float timeToBlow = 2f;
     public float explosionRadius = 3f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,15 +56,43 @@ public class BarrelHealth : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("Hitable");
         foreach (Collider c in Physics.OverlapSphere(transform.position, explosionRadius, mask))
         {
-            BarrelHealth hp = c.GetComponentInParent<BarrelHealth>();
-            if (hp.isTriggered == false)
+            if (c.tag == "Barrel")
             {
-                hp.triggeredByBarrel = true;
-                hp.isTriggered = true;
+
+                BarrelHealth hp = c.GetComponentInParent<BarrelHealth>();
+                if (hp.isTriggered == false)
+                {
+                    hp.triggeredByBarrel = true;
+                    hp.isTriggered = true;
+                }
             }
+            else if (c.tag == "Building")
+            {
+
+                Explode buildingHP = c.GetComponent<Explode>();
+                buildingHP.Detonate();
+            }
+
         }
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            player.canPickUpBarrel = true;
+            player.barrelToPickUp = gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            player.canPickUpBarrel = false;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;

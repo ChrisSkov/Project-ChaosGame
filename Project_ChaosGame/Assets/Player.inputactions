@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "PlaceBarrel",
+                    "type": "Button",
+                    "id": "6b470d0e-119f-4698-bf04-38ac38c365ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "PickUpBarrel",
+                    "type": "Button",
+                    "id": "ff1b97ef-4174-4bab-bbe3-b6f8065d3fef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
@@ -198,6 +214,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da79d353-214a-4f64-a50d-a16dff5f2df0",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceBarrel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aca3a731-02e7-4de6-9fe6-20ecbd9ba944",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpBarrel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

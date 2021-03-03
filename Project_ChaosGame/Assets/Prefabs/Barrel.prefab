@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3271732649088498945}
   - component: {fileID: 3271732649088498944}
+  - component: {fileID: 3271732649581868494}
   m_Layer: 6
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,11 +46,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dca42875336c894393cfaf3844e8699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: 19effe34f7b65f349be95d5bd7bc0b9e, type: 2}
   explosion: {fileID: 4328393079980059155, guid: ce8fbed22a8374642921be4ee4247450, type: 3}
   isTriggered: 0
   triggeredByBarrel: 0
   timer: 0
-  timeToBlow: 1
+  timeToBlow: 0.3
+  explosionRadius: 3
+--- !u!135 &3271732649581868494
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3271732649088498951}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.42
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3271732650450027204
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +110,10 @@ PrefabInstance:
     - target: {fileID: 4913804210949287362, guid: 6037c9cb1551bb64788a0f888758d551, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913804210949287362, guid: 6037c9cb1551bb64788a0f888758d551, type: 3}
+      propertyPath: m_TagString
+      value: Barrel
       objectReference: {fileID: 0}
     - target: {fileID: 4913804210949386722, guid: 6037c9cb1551bb64788a0f888758d551, type: 3}
       propertyPath: m_RootOrder

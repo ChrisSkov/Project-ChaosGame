@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] Camera mainCamera;
-    public float movementSpeed = 5f;
-    public float turnSpeed = 5f;
+    Camera mainCamera;
+    public PlayerScriptObj player;
 
     Vector3 movementDirection;
     Rigidbody rb;
@@ -17,11 +16,14 @@ public class PlayerMovement : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        player.myPosition = transform.position;
+        Cursor.lockState = CursorLockMode.Locked;
         MoveThePlayer();
         TurnThePlayer();
     }
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
             Quaternion rotation = Quaternion.Slerp(rb.rotation,
                                                  Quaternion.LookRotation(CameraDirection(movementDirection)),
-                                                 turnSpeed);
+                                                 player.turnSpeed);
 
             rb.MoveRotation(rotation);
 
@@ -55,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveThePlayer()
     {
-        Vector3 movement = CameraDirection(movementDirection) * movementSpeed * Time.deltaTime;
+        Vector3 movement = CameraDirection(movementDirection) * player.moveSpeed * Time.deltaTime;
         rb.MovePosition(transform.position + movement);
     }
 
