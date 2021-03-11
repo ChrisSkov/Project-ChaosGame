@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveSlow)
         {
-            slowFactor = 3;
+            slowFactor = 2.65f;
         }
         else
         {

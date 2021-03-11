@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] takeDamageSound;
     public AudioClip[] blockSounds;
+    public AudioClip[] impactSound;
     AudioSource source;
     [Header("Effects")]
     public Transform bloodPos;
@@ -48,6 +49,7 @@ public class Health : MonoBehaviour
             {
                 currentHealth -= dmg / 2;
                 PlayImpactSound(takeDamageSound);
+                PlayImpactSound(impactSound);
                 playerAnim.PlayTakeDamage();
             }
             else if (GetComponent<Fight>().blockAttacks == true)
@@ -59,6 +61,7 @@ public class Health : MonoBehaviour
             {
                 currentHealth -= dmg;
                 PlayImpactSound(takeDamageSound);
+                PlayImpactSound(impactSound);
                 playerAnim.PlayTakeDamage();
             }
             //  GetComponent<AudioSource>().PlayOneShot(impactSound[Random.Range(0, impactSound.Length)]);

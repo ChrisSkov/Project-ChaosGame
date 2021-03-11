@@ -861,7 +861,7 @@ MonoBehaviour:
   atk_2DMG: 20
   atk_3DMG: 20
   throwDMG: 20
-  shovelRadius: 0.85
+  shovelRadius: 1.25
   atkCount: 0
   atkCountMax: 2
   timeBeforeAtkReset: 1.45
@@ -915,6 +915,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f6af3c3c072944841a885127b2651233, type: 3}
   - {fileID: 8300000, guid: 7ca281c28ce40af4eb56f92d5c268da6, type: 3}
   - {fileID: 8300000, guid: 241ab269609b62d4f97a54d449f5d806, type: 3}
+  impactSound:
+  - {fileID: 8300000, guid: a85a066f55561c44ebe27f31d290d59d, type: 3}
+  - {fileID: 8300000, guid: 0b743c643cf4ee14bb917da4e7c6c8bf, type: 3}
+  - {fileID: 8300000, guid: 27ba8334c51588d4a8f97ebaef46a3b9, type: 3}
+  - {fileID: 8300000, guid: 01021012487f6f24bbb63beb6480c80f, type: 3}
   bloodPos: {fileID: 269221525}
   chillBlood: {fileID: 6716172745524632473, guid: 22212031a1e1aa3448182c5321184269, type: 3}
 --- !u!82 &279790789

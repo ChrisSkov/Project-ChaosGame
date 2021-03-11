@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnBlockBegin(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && blockTimer >= blockCD)
+        if (blockTimer >= blockCD)
         {
             blockTimer = 0;
             playerAnim.PlayBlockStartAnim();
