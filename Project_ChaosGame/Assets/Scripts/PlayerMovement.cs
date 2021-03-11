@@ -5,12 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Camera mainCamera;
+    public float slowFactor = 1;
     public PlayerScriptObj player;
+    Camera mainCamera;
 
     Vector3 movementDirection;
     Rigidbody rb;
 
+    bool canMove = true;
+    bool moveSlow = false;
+    bool canRotate = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +48,10 @@ public class PlayerMovement : MonoBehaviour
             Quaternion rotation = Quaternion.Slerp(rb.rotation,
                                                  Quaternion.LookRotation(CameraDirection(movementDirection)),
                                                  player.turnSpeed);
-
-            rb.MoveRotation(rotation);
+            if (canRotate)
+            {
+                rb.MoveRotation(rotation);
+            }
 
         }
     }
@@ -57,10 +63,50 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveThePlayer()
     {
-        Vector3 movement = CameraDirection(movementDirection) * player.moveSpeed * Time.deltaTime;
-        rb.MovePosition(transform.position + movement);
+        if (moveSlow)
+        {
+            slowFactor = 3;
+        }
+        else
+        {
+            slowFactor = 1;
+        }
+        Vector3 movement = CameraDirection(movementDirection) * player.moveSpeed / slowFactor * Time.deltaTime;
+        if (canMove)
+        {
+            rb.MovePosition(transform.position + movement);
+        }
     }
 
+    public void CanMove()
+    {
+        canMove = true;
+    }
+
+    public void CannotMove()
+    {
+        canMove = false;
+    }
+
+    public void MoveSlow()
+    {
+        moveSlow = true;
+    }
+
+    public void MoveNotSlow()
+    {
+        moveSlow = false;
+    }
+
+    public void CannotRotate()
+    {
+        canRotate = false;
+    }
+
+    public void CanRotate()
+    {
+        canRotate = true;
+    }
     Vector3 CameraDirection(Vector3 movementDirection)
     {
         var cameraForward = mainCamera.transform.forward;

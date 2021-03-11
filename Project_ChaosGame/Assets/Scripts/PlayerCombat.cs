@@ -22,13 +22,13 @@ public class PlayerCombat : MonoBehaviour
     {
       
     }
-    public void OnAttack(InputAction.CallbackContext value)
-    {
-        if (value.performed)
-        {
-            playerAnim.PlayAttackAnimation();
-        }
-    }
+    // public void OnAttack(InputAction.CallbackContext value)
+    // {
+    //     if (value.performed)
+    //     {
+    //         playerAnim.PlayAttackAnimation();
+    //     }
+    // }
 
     public void OnPlaceBarrel(InputAction.CallbackContext ctx)
     {

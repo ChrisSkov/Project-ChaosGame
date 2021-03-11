@@ -5,19 +5,29 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    PlayerAnimation playerAnim;
+    [Header("Health values")]
     public float maxHealth = 100f;
     public float currentHealth;
-    bool dead = false;
-
+    public bool dead = false;
+    [Header("UI")]
     public Slider hpSlider;
     public Text hpText;
     public int myID;
+    [Header("Audio")]
     public AudioClip[] takeDamageSound;
-    public AudioClip[] impactSound;
+    public AudioClip[] blockSounds;
+    AudioSource source;
+    [Header("Effects")]
+    public Transform bloodPos;
+    public GameObject chillBlood;
 
+    bool reducedDMG = false;
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = GetComponent<PlayerAnimation>();
+        source = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         hpSlider.maxValue = maxHealth;
     }
@@ -30,19 +40,65 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float dmg, int id)
     {
+        if (dead)
+            return;
         if (id != myID)
         {
-
-            currentHealth -= dmg;
-            GetComponent<AudioSource>().PlayOneShot(takeDamageSound[Random.Range(0, takeDamageSound.Length)]);
-            GetComponent<AudioSource>().PlayOneShot(impactSound[Random.Range(0, impactSound.Length)]);
+            if (reducedDMG)
+            {
+                currentHealth -= dmg / 2;
+                PlayImpactSound(takeDamageSound);
+                playerAnim.PlayTakeDamage();
+            }
+            else if (GetComponent<Fight>().blockAttacks == true)
+            {
+                playerAnim.PlayBlockImpactAnim();
+                PlayImpactSound(blockSounds);
+            }
+            else
+            {
+                currentHealth -= dmg;
+                PlayImpactSound(takeDamageSound);
+                playerAnim.PlayTakeDamage();
+            }
+            //  GetComponent<AudioSource>().PlayOneShot(impactSound[Random.Range(0, impactSound.Length)]);
 
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                dead = true;
+                if (!dead)
+                {
+                    playerAnim.PlayDeathAnimation();
+                    SpawnChillBlood();
+                    dead = true;
+                }
             }
         }
         hpSlider.value = currentHealth;
     }
+
+
+
+    public void SpawnChillBlood()
+    {
+        GameObject bloodClone = Instantiate(chillBlood, bloodPos.position, bloodPos.rotation);
+        Destroy(bloodClone, 2f);
+
+    }
+
+    private void PlayImpactSound(AudioClip[] clipArray)
+    {
+        source.PlayOneShot(clipArray[Random.Range(0, clipArray.Length)]);
+    }
+
+    public void TakeReducedDMG()
+    {
+        reducedDMG = true;
+    }
+    public void TakeFullDMG()
+    {
+        reducedDMG = false;
+    }
+
+
 }

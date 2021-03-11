@@ -9,18 +9,31 @@ public class PlayerAnimation : MonoBehaviour
 
     //Animation String IDs
     private int playerMovementAnimationID;
-    private int playerAttackAnimationID;
-    private int playerDodgeAnimID;
-    private int playerJumpAnimID;
+    private int dodgeAnimID;
+    private int jumpAnimID;
     private int playerExitAnimID;
-
+    private int deathAnimID;
+    private int throwAnimID;
+    private int throwVictimID;
+    private int atk_1AnimID;
+    private int atk_2AnimID;
+    private int blockStartAnimID;
+    private int blockEndAnimID;
+    private int impactAnimID;
+    private int blockImpactAnimID;
+    Health hp;
     public void SetupBehaviour()
     {
+        hp = GetComponent<Health>();
         SetupAnimationIDs();
     }
 
     private void Update()
     {
+        if (hp.dead)
+        {
+            return;
+        }
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsTag("jump"))
         {
             playerAnimator.updateMode = AnimatorUpdateMode.AnimatePhysics;
@@ -34,10 +47,18 @@ public class PlayerAnimation : MonoBehaviour
     void SetupAnimationIDs()
     {
         playerMovementAnimationID = Animator.StringToHash("forwardSpeed");
-        playerAttackAnimationID = Animator.StringToHash("attack");
-        playerDodgeAnimID = Animator.StringToHash("dodge");
-        playerJumpAnimID = Animator.StringToHash("jump");
+        atk_1AnimID = Animator.StringToHash("Atk_1");
+        atk_2AnimID = Animator.StringToHash("Atk_2");
+        throwAnimID = Animator.StringToHash("Throw");
+        throwVictimID = Animator.StringToHash("Throw_Victim");
+        dodgeAnimID = Animator.StringToHash("Roll");
+        jumpAnimID = Animator.StringToHash("Jump");
         playerExitAnimID = Animator.StringToHash("exit");
+        deathAnimID = Animator.StringToHash("Death");
+        blockStartAnimID = Animator.StringToHash("BlockStart");
+        blockEndAnimID = Animator.StringToHash("BlockEnd");
+        blockImpactAnimID = Animator.StringToHash("BlockImpact");
+        impactAnimID = Animator.StringToHash("TakeDMG");
     }
 
     public void UpdateMovementAnimation(float movementBlendValue)
@@ -46,23 +67,88 @@ public class PlayerAnimation : MonoBehaviour
         playerAnimator.SetFloat(playerMovementAnimationID, movementBlendValue);
     }
 
+    public void PlayIsThrownAnim()
+    {
+        playerAnimator.Play(throwVictimID);
+        // playerAnimator.SetTrigger(playerIsThrownAnimID);
+    }
+
+    public void PlayThrowAnim()
+    {
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(throwAnimID);
+        }
+    }
     public void ExitAnim()
     {
         playerAnimator.SetTrigger(playerExitAnimID);
     }
-    public void PlayAttackAnimation()
+    public void PlayAttackAnimation(int atkCount)
     {
-        playerAnimator.SetTrigger(playerAttackAnimationID);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            if (atkCount == 0 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_1"))
+            {
+                playerAnimator.Play(atk_1AnimID, 0);
+            }
+            else if (atkCount == 1 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_2"))
+            {
+                playerAnimator.Play(atk_2AnimID, 0);
+
+            }
+        }
+        //    
+
+        //         // else if (atkCount == 2)
+        //         // {
+        //         //     playerAnimator.Play(atk_3AnimID, 0);
+        //         // }
+        //     }
+        //     //playerAnimator.SetTrigger(playerAttackAnimationID);
     }
 
+    public void PlayDeathAnimation()
+    {
+        playerAnimator.Play(deathAnimID, 0);
+    }
     public void PlayDodgeAnimation()
     {
-
-        playerAnimator.SetTrigger(playerDodgeAnimID);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(dodgeAnimID, 0);
+        }
     }
     public void PlayJumpAnimation()
     {
-
-        playerAnimator.SetTrigger(playerJumpAnimID);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(jumpAnimID, 0);
+        }
     }
+
+    public void PlayBlockStartAnim()
+    {
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(blockStartAnimID, 0);
+        }
+    }
+    public void PlayBlockImpactAnim()
+    {
+        if (hp.dead)
+            return;
+        playerAnimator.Play(blockImpactAnimID, 0);
+
+    }
+
+    public void PlayTakeDamage()
+    {
+        if (hp.dead)
+            return;
+        playerAnimator.Play(impactAnimID, 0);
+    }
+
+
 }

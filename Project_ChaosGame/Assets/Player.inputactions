@@ -38,14 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "f5d55e1a-5070-4900-812d-10ad26f9a516",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap"
-                },
-                {
                     "name": "PlaceBarrel",
                     "type": "Button",
                     "id": "6b470d0e-119f-4698-bf04-38ac38c365ba",
@@ -73,6 +65,22 @@
                     "name": "CancelAttack",
                     "type": "Button",
                     "id": "6489b5ff-6853-4ca2-a0c3-7e97cf2fa993",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "1261a98c-2b0c-4bf1-8d75-f07825b56ae4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "312632ca-b72f-49ee-9a51-f7000cf7d9e2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
@@ -191,30 +199,8 @@
                 },
                 {
                     "name": "",
-                    "id": "457e996f-502a-4020-92b5-860feefc5026",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "41b54dfd-4e9c-4f37-adb4-e0899d3dbadb",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3ce49713-8c8b-45c0-8474-7df3a14ee441",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "Tap",
                     "processors": "",
                     "groups": "",
@@ -296,6 +282,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "CancelAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "549b9830-b2f4-415a-9a1e-900779d947df",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b393bd46-724c-46d6-9836-11d8a0e8af53",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

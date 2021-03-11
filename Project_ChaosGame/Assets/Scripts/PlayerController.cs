@@ -2,25 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Cinemachine;
 public class PlayerController : MonoBehaviour
 {
-    public float movementSmoothingSpeed = 1f;
-    private Vector3 rawInputMovement;
-    private Vector3 smoothInputMovement;
+    [Header("Scripts references")]
+
     public PlayerAnimation playerAnim;
     public PlayerMovement playerMove;
+    public Health health;
+    [Header("Adjustable values")]
+
+    public float movementSmoothingSpeed = 1f;
+    public float dodgeCD = 3f;
+    public float jumpCD = 3f;
+    public float blockCD = 3f;
+    private Vector3 smoothInputMovement;
+    private Vector3 rawInputMovement;
+    float dodgeTimer = Mathf.Infinity;
+    float blockTimer = Mathf.Infinity;
+    // float jumpTimer = Mathf.Infinity;
+    // public FindPlayerTarget findPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //  findPlayer.UpdateTargetGroup();
         playerMove.SetupBehaviour();
         playerAnim.SetupBehaviour();
+        health = GetComponent<Health>();
     }
 
     void Update()
     {
+        dodgeTimer += Time.deltaTime;
+        blockTimer += Time.deltaTime;
+        if (health.dead)
+        {
+            return;
+        }
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
         UpdatePlayerAnimationMovement();
@@ -47,6 +66,13 @@ public class PlayerController : MonoBehaviour
     //It stores the input Vector as a Vector3 to then be used by the smoothing function.
 
 
+    public void OnThrow(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            playerAnim.PlayThrowAnim();
+        }
+    }
     public void OnMovement(InputAction.CallbackContext value)
     {
 
@@ -56,19 +82,30 @@ public class PlayerController : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext ctx)
     {
-  
-        if (ctx.performed)
+
+        if (ctx.performed && dodgeTimer >= dodgeCD)
         {
             playerAnim.PlayDodgeAnimation();
+            dodgeTimer = 0;
         }
     }
 
-    public void OnJump(InputAction.CallbackContext ctx)
+    public void OnBlockBegin(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.performed && blockTimer >= blockCD)
         {
-            playerAnim.PlayJumpAnimation();
+            blockTimer = 0;
+            playerAnim.PlayBlockStartAnim();
         }
     }
+
+    // public void OnJump(InputAction.CallbackContext ctx)
+    // {
+    //     if (ctx.performed && jumpTimer >= jumpCD)
+    //     {
+    //         playerAnim.PlayJumpAnimation();
+    //         jumpTimer = 0;
+    //     }
+    // }
 
 }
