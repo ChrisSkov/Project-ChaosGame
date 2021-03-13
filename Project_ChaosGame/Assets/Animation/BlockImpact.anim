@@ -35080,14 +35080,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: CannotRotate
+    functionName: RotateSlow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.016666668
-    functionName: CannotMove
+    functionName: MoveSlow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -35101,14 +35101,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.73333335
-    functionName: CanRotate
+    functionName: RotateNotSlow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: CanMove
+    functionName: MoveNotSlow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

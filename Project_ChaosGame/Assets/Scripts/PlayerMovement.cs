@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float slowFactor = 1;
+    public float rotateSlowFactor = 1;
+    
     public PlayerScriptObj player;
     Camera mainCamera;
 
     Vector3 movementDirection;
     Rigidbody rb;
-
+    bool rotateSlow = false;
     bool canMove = true;
     bool moveSlow = false;
     bool canRotate = true;
@@ -44,10 +46,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (movementDirection.sqrMagnitude > 0.01f)
         {
-
+            if (rotateSlow)
+            {
+                rotateSlowFactor = 1.15f;
+            }
+            else
+            {
+                rotateSlowFactor = 1;
+            }
             Quaternion rotation = Quaternion.Slerp(rb.rotation,
                                                  Quaternion.LookRotation(CameraDirection(movementDirection)),
-                                                 player.turnSpeed);
+                                                 player.turnSpeed / rotateSlowFactor);
             if (canRotate)
             {
                 rb.MoveRotation(rotation);
@@ -65,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveSlow)
         {
-            slowFactor = 2.65f;
+            slowFactor = 1.65f;
         }
         else
         {
@@ -106,6 +115,15 @@ public class PlayerMovement : MonoBehaviour
     public void CanRotate()
     {
         canRotate = true;
+    }
+    public void RotateSlow()
+    {
+        rotateSlow = true;;
+    }
+
+    public void RotateNotSlow()
+    {
+        rotateSlow = false;;
     }
     Vector3 CameraDirection(Vector3 movementDirection)
     {

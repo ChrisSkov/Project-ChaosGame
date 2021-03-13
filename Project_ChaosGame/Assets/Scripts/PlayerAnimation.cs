@@ -75,7 +75,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayThrowAnim()
     {
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
         {
             playerAnimator.Play(throwAnimID);
         }
@@ -84,20 +84,30 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerAnimator.SetTrigger(playerExitAnimID);
     }
-    public void PlayAttackAnimation(int atkCount)
+    public void PlayAttackAnimation(int atkCount, bool canAttack)
     {
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        if (canAttack)
         {
-            if (atkCount == 0 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_1"))
-            {
-                playerAnimator.Play(atk_1AnimID, 0);
-            }
-            else if (atkCount == 1 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_2"))
-            {
-                playerAnimator.Play(atk_2AnimID, 0);
-
-            }
+            playerAnimator.SetTrigger("attack");
         }
+        else{
+            return;
+        }
+        // if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        // {
+        //     if (atkCount == 0 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_1"))
+        //     {
+
+        //         //playerAnimator.Play(atk_1AnimID, 0);
+        //     }
+        //     else if (atkCount == 1 && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_2"))
+        //     {
+        //         playerAnimator.SetTrigger("attack");
+
+        //         //playerAnimator.Play(atk_2AnimID, 0);
+
+        //     }
+        // }
         //    
 
         //         // else if (atkCount == 2)

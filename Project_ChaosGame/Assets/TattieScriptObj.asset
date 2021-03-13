@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e9a740954262e41a36e238a02e2f0b, type: 3}
   m_Name: TattieScriptObj
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  turnSpeed: 0.1
+  moveSpeed: 7.5
+  turnSpeed: 0.4
   currentBarrels: 0
   maxBarrels: 3
+  canPickUpBarrel: 0
+  barrelToPickUp: {fileID: 0}
+  myPosition: {x: 2.3862653, y: 0.049999833, z: 1.6867006}
   barrelOffset: 4
   barrelPrefab: {fileID: 3271732649088498951, guid: 334e4fc2377343242b6ac69c534f4b71, type: 3}

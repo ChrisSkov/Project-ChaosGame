@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barrel
   - Building
+  - Menu
   layers:
   - Default
   - TransparentFX
