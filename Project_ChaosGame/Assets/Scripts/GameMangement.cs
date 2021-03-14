@@ -9,6 +9,7 @@ public class GameMangement : MonoBehaviour
     int count = 0;
     public PlayerController controll;
     public Transform[] spawnPoints;
+    public Transform lookAtStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class GameMangement : MonoBehaviour
         input.transform.position = spawnPoints[count].position;
         input.gameObject.GetComponent<Fight>().id = count;
         input.gameObject.GetComponent<Health>().myID = count;
+        input.transform.LookAt(lookAtStart.position);
         count ++;
 
     }

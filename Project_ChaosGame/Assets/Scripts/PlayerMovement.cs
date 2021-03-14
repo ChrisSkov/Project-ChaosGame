@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rotateSlow)
             {
-                rotateSlowFactor = 1.15f;
+                rotateSlowFactor = 1.45f;
             }
             else
             {

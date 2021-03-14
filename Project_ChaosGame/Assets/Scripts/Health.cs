@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     public Transform bloodPos;
     public GameObject chillBlood;
 
-     GameObject gameOverScreen;
+    GameObject gameOverScreen;
 
     bool reducedDMG = false;
     // Start is called before the first frame update
@@ -40,13 +40,15 @@ public class Health : MonoBehaviour
     void Update()
     {
         hpText.text = string.Format("{0}{1}", currentHealth + "/", maxHealth);
-        if(dead)
+        if (dead)
         {
-            gameOverScreen.SetActive(true);
+            gameOverScreen.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else{
-            gameOverScreen.SetActive(false);
-        }
+        // else
+        // {
+        //     gameOverScreen.transform.GetChild(0).gameObject.SetActive(false);
+
+        // }
     }
 
     public void TakeDamage(float dmg, int id)
@@ -58,8 +60,7 @@ public class Health : MonoBehaviour
             if (reducedDMG)
             {
                 currentHealth -= dmg / 2;
-                PlayImpactSound(takeDamageSound);
-                PlayImpactSound(impactSound);
+                PlayTakeDMGSound();
                 playerAnim.PlayTakeDamage();
             }
             else if (GetComponent<Fight>().blockAttacks == true)
@@ -67,11 +68,15 @@ public class Health : MonoBehaviour
                 playerAnim.PlayBlockImpactAnim();
                 PlayImpactSound(blockSounds);
             }
+            else if (playerAnim.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
+            {
+                currentHealth -= dmg;
+                PlayTakeDMGSound();
+            }
             else
             {
                 currentHealth -= dmg;
-                PlayImpactSound(takeDamageSound);
-                PlayImpactSound(impactSound);
+                PlayTakeDMGSound();
                 playerAnim.PlayTakeDamage();
             }
             //  GetComponent<AudioSource>().PlayOneShot(impactSound[Random.Range(0, impactSound.Length)]);
@@ -90,7 +95,11 @@ public class Health : MonoBehaviour
         hpSlider.value = currentHealth;
     }
 
-
+    private void PlayTakeDMGSound()
+    {
+        PlayImpactSound(takeDamageSound);
+        PlayImpactSound(impactSound);
+    }
 
     public void SpawnChillBlood()
     {

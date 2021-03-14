@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using TMPro;
 public class Fight : MonoBehaviour
 {
     public int id;
@@ -40,14 +40,25 @@ public class Fight : MonoBehaviour
     public AudioClip[] slamSounds;
     public AudioClip[] slamJumpSounds;
 
+    [Header("Weapons")]
+    public GameObject[] playerWeps;
+    public GameObject[] shields;
+
+    [Header("UI")]
+    public TMP_Text text;
     bool canCancel = true;
     public bool blockAttacks = false;
     bool canAttack = true;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<PlayerAnimation>();
-
+        playerWeps[id].gameObject.SetActive(true);
+        shields[id].gameObject.SetActive(true);
+        text.SetText("P" + (id + 1));
     }
 
     // Update is called once per frame
@@ -80,19 +91,6 @@ public class Fight : MonoBehaviour
         {
             playerAnim.PlayAttackAnimation(atkCount, canAttack);
         }
-    }
-    public void AttackAnimEven()
-    {
-        // LayerMask mask = LayerMask.GetMask("Hitable");
-        // foreach (Collider c in Physics.OverlapSphere(shovelTip.position, shovelRadius, mask))
-        // {
-        //DetectHit();
-        // }
-        // atkCount++;
-        // if (atkCount > atkCountMax)
-        // {
-        //     atkCount = 0;
-        // }
     }
 
     public void DetectHit(Collider c)

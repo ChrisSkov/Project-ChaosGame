@@ -13,6 +13,9 @@ public class PlayerScriptObj : ScriptableObject
     public Vector3 myPosition;
     public float barrelOffset;
     public GameObject barrelPrefab;
+    public Material[] pantsMats;
+    public GameObject[] weapons;
+    public GameObject[] shields;
 
   
 }

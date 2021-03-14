@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e9a740954262e41a36e238a02e2f0b, type: 3}
   m_Name: TattieScriptObj
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
-  turnSpeed: 0.4
+  moveSpeed: 5.5
+  turnSpeed: 0.15
   currentBarrels: 0
   maxBarrels: 3
   canPickUpBarrel: 0
   barrelToPickUp: {fileID: 0}
-  myPosition: {x: 2.3862653, y: 0.049999833, z: 1.6867006}
+  myPosition: {x: 4.5613184, y: 0.049999774, z: 4.118715}
   barrelOffset: 4
   barrelPrefab: {fileID: 3271732649088498951, guid: 334e4fc2377343242b6ac69c534f4b71, type: 3}
+  pantsMats:
+  - {fileID: 2100000, guid: 01b5988ecf344814dabbdbedeccad3e2, type: 2}
+  - {fileID: 2100000, guid: 4f3c2ce42dc81694f988f029e8f92c70, type: 2}
+  weapons: []
+  shields: []
