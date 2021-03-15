@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitTrigger : MonoBehaviour
 {
     Fight fight;
-    bool hasDoneDMG = false;
+   // bool hasDoneDMG = false;
 
     Collider myCollider;
     // Start is called before the first frame update

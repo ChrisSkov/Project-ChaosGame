@@ -33,6 +33,7 @@ public class Fight : MonoBehaviour
 
     [Header("Effects")]
     public GameObject[] atkEffects;
+    public GameObject[] blockEffects;
 
     [Header("Audio")]
     public AudioClip[] swingSounds;
@@ -119,6 +120,13 @@ public class Fight : MonoBehaviour
             atkCount = 0;
         }
 
+    }
+
+    public void SpawnBlockEffect()
+    {
+
+        GameObject clone = Instantiate(blockEffects[Random.Range(0,blockEffects.Length)],  shields[id].gameObject.transform.position,  shields[id].gameObject.transform.rotation);
+        Destroy(clone, 2f);
     }
 
     private void SpawnAtkEffect()

@@ -1107,7 +1107,7 @@ MonoBehaviour:
   movementSmoothingSpeed: 5
   dodgeCD: 0.25
   jumpCD: 3
-  blockCD: 0.1
+  blockCD: 0.25
 --- !u!114 &1920151324251297277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,6 +1168,9 @@ MonoBehaviour:
   atkEffects:
   - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
   - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
+  blockEffects:
+  - {fileID: 112862, guid: b7d99cfb535c29943be7df57041c6c8f, type: 3}
+  - {fileID: 175826, guid: 6b101824d228d684baacfa2210303925, type: 3}
   swingSounds:
   - {fileID: 8300000, guid: d9cb4b1696eb6c440917f65382487702, type: 3}
   hitSounds:
