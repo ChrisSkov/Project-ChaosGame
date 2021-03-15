@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
         // }
     }
 
-    public void TakeDamage(float dmg, int id)
+    public void TakeDamage(float dmg, int id, GameObject attacker)
     {
         if (dead)
             return;
@@ -67,6 +67,8 @@ public class Health : MonoBehaviour
             {
                 playerAnim.PlayBlockImpactAnim();
                 PlayImpactSound(blockSounds);
+                attacker.GetComponent<PlayerAnimation>().PlayHitBackAnim();
+
             }
             else if (playerAnim.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
             {

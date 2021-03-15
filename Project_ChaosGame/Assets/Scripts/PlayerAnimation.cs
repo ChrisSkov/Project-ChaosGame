@@ -21,6 +21,7 @@ public class PlayerAnimation : MonoBehaviour
     private int blockEndAnimID;
     private int impactAnimID;
     private int blockImpactAnimID;
+    private int hitBackAnimID;
     Health hp;
     public void SetupBehaviour()
     {
@@ -59,12 +60,18 @@ public class PlayerAnimation : MonoBehaviour
         blockEndAnimID = Animator.StringToHash("BlockEnd");
         blockImpactAnimID = Animator.StringToHash("BlockImpact");
         impactAnimID = Animator.StringToHash("TakeDMG");
+        hitBackAnimID = Animator.StringToHash("HitBack");
     }
 
     public void UpdateMovementAnimation(float movementBlendValue)
     {
 
         playerAnimator.SetFloat(playerMovementAnimationID, movementBlendValue);
+    }
+
+    public void PlayHitBackAnim()
+    {
+        playerAnimator.Play(hitBackAnimID,0);
     }
 
     public void PlayIsThrownAnim()

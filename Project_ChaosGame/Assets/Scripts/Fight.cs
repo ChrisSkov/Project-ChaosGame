@@ -98,7 +98,7 @@ public class Fight : MonoBehaviour
 
         if (atkCount == 0)
         {
-            c.GetComponent<Health>().TakeDamage(atk_1DMG, id);
+            c.GetComponent<Health>().TakeDamage(atk_1DMG, id, gameObject);
             if (c.GetComponent<Fight>().id != id)
             {
                 SpawnAtkEffect();
@@ -106,7 +106,7 @@ public class Fight : MonoBehaviour
         }
         else if (atkCount == 1)
         {
-            c.GetComponent<Health>().TakeDamage(atk_2DMG, id);
+            c.GetComponent<Health>().TakeDamage(atk_2DMG, id, gameObject);
             if (c.GetComponent<Fight>().id != id)
             {
                 SpawnAtkEffect();
@@ -164,7 +164,7 @@ public class Fight : MonoBehaviour
     }
     public void ThrowAnimDMGEvent()
     {
-        GetComponent<Health>().TakeDamage(throwDMG, 4);
+        GetComponent<Health>().TakeDamage(throwDMG, 4, gameObject);
     }
 
     public void CanCancel()
