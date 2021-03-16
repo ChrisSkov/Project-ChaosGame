@@ -99,6 +99,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnFlex(InputAction.CallbackContext ctx)
+    {
+        playerAnim.PlayFlexAnim();
+    }
+
     // public void OnJump(InputAction.CallbackContext ctx)
     // {
     //     if (ctx.performed && jumpTimer >= jumpCD)

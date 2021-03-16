@@ -84,6 +84,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "Flex",
+                    "type": "Button",
+                    "id": "342748c2-0304-44e3-8695-c68dc90028c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
@@ -304,6 +312,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76735dcb-ebd5-4bc0-8367-fb50715cb8fc",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flex",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

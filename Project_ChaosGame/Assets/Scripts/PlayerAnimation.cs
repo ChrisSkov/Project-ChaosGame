@@ -22,6 +22,7 @@ public class PlayerAnimation : MonoBehaviour
     private int impactAnimID;
     private int blockImpactAnimID;
     private int hitBackAnimID;
+    private int flexAnimID;
     Health hp;
     public void SetupBehaviour()
     {
@@ -61,8 +62,13 @@ public class PlayerAnimation : MonoBehaviour
         blockImpactAnimID = Animator.StringToHash("BlockImpact");
         impactAnimID = Animator.StringToHash("TakeDMG");
         hitBackAnimID = Animator.StringToHash("HitBack");
+        flexAnimID = Animator.StringToHash("Flex");
     }
 
+    public void PlayFlexAnim()
+    {
+        playerAnimator.Play(flexAnimID,0);
+    }
     public void UpdateMovementAnimation(float movementBlendValue)
     {
 
@@ -71,7 +77,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayHitBackAnim()
     {
-        playerAnimator.Play(hitBackAnimID,0);
+        playerAnimator.Play(hitBackAnimID, 0);
     }
 
     public void PlayIsThrownAnim()
@@ -82,10 +88,14 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayThrowAnim()
     {
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("BlockImpact"))
         {
             playerAnimator.Play(throwAnimID);
         }
+
+        // if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
+        // {
+        // }
     }
     public void ExitAnim()
     {
@@ -97,7 +107,8 @@ public class PlayerAnimation : MonoBehaviour
         {
             playerAnimator.SetTrigger("attack");
         }
-        else{
+        else
+        {
             return;
         }
         // if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
