@@ -51,7 +51,7 @@ public class Fight : MonoBehaviour
     public bool blockAttacks = false;
     bool canAttack = true;
 
-
+    public bool canThrow = false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +65,7 @@ public class Fight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ThrowAnimEvent();
 
         atkTimer += Time.deltaTime;
         if (atkTimer >= atkCD)
@@ -125,7 +125,7 @@ public class Fight : MonoBehaviour
     public void SpawnBlockEffect()
     {
 
-        GameObject clone = Instantiate(blockEffects[Random.Range(0,blockEffects.Length)],  shields[id].gameObject.transform.position,  shields[id].gameObject.transform.rotation);
+        GameObject clone = Instantiate(blockEffects[Random.Range(0, blockEffects.Length)], shields[id].gameObject.transform.position, shields[id].gameObject.transform.rotation);
         Destroy(clone, 2f);
     }
 
@@ -141,20 +141,33 @@ public class Fight : MonoBehaviour
     }
 
 
+    public void StartThrowEvent()
+    {
+        canThrow = true;
+    }
+
+    public void StopThrowEvent()
+    {
+        canThrow = false;
+    }
     public void ThrowAnimEvent()
     {
         LayerMask mask = LayerMask.GetMask("Hitable");
-        foreach (Collider c in Physics.OverlapSphere(throwAim.position, shovelRadius, mask))
+        if (canThrow)
         {
-            if (c.gameObject.tag == "Player")
+            foreach (Collider c in Physics.OverlapSphere(throwAim.position, shovelRadius, mask))
             {
-                if (c.GetComponent<Health>().myID != id)
+                if (c.gameObject.tag == "Player")
                 {
-                    c.transform.LookAt(transform.position);
-                    transform.LookAt(c.transform.position);
-                    if (!c.GetComponent<Health>().dead)
+                    if (c.GetComponent<Health>().myID != id)
                     {
-                        c.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
+                        c.transform.LookAt(transform.position);
+                        transform.LookAt(c.transform.position);
+                        if (!c.GetComponent<Health>().dead)
+                        {
+                            c.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
+                            canThrow = false;
+                        }
                     }
                 }
             }

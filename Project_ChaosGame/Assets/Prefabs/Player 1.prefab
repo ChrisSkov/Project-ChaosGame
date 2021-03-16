@@ -586,7 +586,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -850,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1920151324251297250
 Transform:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   movementSmoothingSpeed: 5
   dodgeCD: 0.25
   jumpCD: 3
-  blockCD: 0.25
+  blockCD: 0.15
 --- !u!114 &1920151324251297277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   throwAim: {fileID: 269221525}
   slamEffectPos: {fileID: 3922643630898571480}
   atk_1DMG: 8
-  atk_2DMG: 20
+  atk_2DMG: 15
   atk_3DMG: 20
   throwDMG: 20
   shovelRadius: 1.25
