@@ -92,6 +92,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "ThrowShield",
+                    "type": "Button",
+                    "id": "13d6f7ef-e1e1-413c-afc9-dd72a3a11a0d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
@@ -186,7 +194,7 @@
                 {
                     "name": "",
                     "id": "b659d139-5784-4cf3-8431-076798d8f1bb",
-                    "path": "<DualShockGamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -273,6 +281,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ed0542b5-b7c8-4063-b741-f06c1d29cf72",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5312a7c1-b658-4eb3-99d9-9ead4eb1278e",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -306,6 +325,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cb036eb9-b0b0-407b-baf0-b600f8ccd5d3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b393bd46-724c-46d6-9836-11d8a0e8af53",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -317,12 +347,45 @@
                 },
                 {
                     "name": "",
+                    "id": "6c46debe-3cb5-470e-b0e1-86a5aa8c8761",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "76735dcb-ebd5-4bc0-8367-fb50715cb8fc",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Flex",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3c195c2-0200-46ef-baf4-1c2241de75b8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flex",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "edbd7ba2-723e-40e1-a992-255a2410d5b5",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowShield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
