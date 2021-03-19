@@ -23,6 +23,8 @@ public class PlayerAnimation : MonoBehaviour
     private int blockImpactAnimID;
     private int hitBackAnimID;
     private int flexAnimID;
+    private int atk_3AnimID;
+    private int chargeAnimID;
     Health hp;
     public void SetupBehaviour()
     {
@@ -63,11 +65,18 @@ public class PlayerAnimation : MonoBehaviour
         impactAnimID = Animator.StringToHash("TakeDMG");
         hitBackAnimID = Animator.StringToHash("HitBack");
         flexAnimID = Animator.StringToHash("Flex");
+        atk_3AnimID = Animator.StringToHash("Atk_3");
+        chargeAnimID = Animator.StringToHash("Charge");
+    }
+
+    public void PlayChargeAnim()
+    {
+        playerAnimator.Play(chargeAnimID, 0);
     }
 
     public void PlayFlexAnim()
     {
-        playerAnimator.Play(flexAnimID,0);
+        playerAnimator.Play(flexAnimID, 0);
     }
     public void UpdateMovementAnimation(float movementBlendValue)
     {
@@ -94,19 +103,19 @@ public class PlayerAnimation : MonoBehaviour
 
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw_Victim"))
         {
-        playerAnimator.Play(throwAnimID);
+            playerAnimator.Play(throwAnimID);
         }
-        
-}
-public void ExitAnim()
-{
-    playerAnimator.SetTrigger(playerExitAnimID);
-}
-public void PlayAttackAnimation(int atkCount, bool canAttack)
-{
-    if (canAttack)
+
+    }
+    public void ExitAnim()
     {
-        playerAnimator.SetTrigger("attack");
+        playerAnimator.SetTrigger(playerExitAnimID);
+    }
+    public void PlayAttackAnimation(int atkCount, bool canAttack)
+    {
+        if (canAttack)
+        {
+            playerAnimator.SetTrigger("attack");
         }
         else
         {
@@ -135,49 +144,49 @@ public void PlayAttackAnimation(int atkCount, bool canAttack)
         //         // }
         //     }
         //     //playerAnimator.SetTrigger(playerAttackAnimationID);
-}
+    }
 
-public void PlayDeathAnimation()
-{
-    playerAnimator.Play(deathAnimID, 0);
-}
-public void PlayDodgeAnimation()
-{
-    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+    public void PlayDeathAnimation()
     {
-        playerAnimator.Play(dodgeAnimID, 0);
-        }
-}
-public void PlayJumpAnimation()
-{
-    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        playerAnimator.Play(deathAnimID, 0);
+    }
+    public void PlayDodgeAnimation()
     {
-        playerAnimator.Play(jumpAnimID, 0);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(dodgeAnimID, 0);
         }
-}
-
-public void PlayBlockStartAnim()
-{
-
-    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+    }
+    public void PlayJumpAnimation()
     {
-        playerAnimator.Play(blockStartAnimID, 0);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(jumpAnimID, 0);
         }
-}
-public void PlayBlockImpactAnim()
-{
-    if (hp.dead)
-        return;
-    playerAnimator.Play(blockImpactAnimID, 0);
+    }
 
-}
+    public void PlayBlockStartAnim()
+    {
 
-public void PlayTakeDamage()
-{
-    if (hp.dead)
-        return;
-    playerAnimator.Play(impactAnimID, 0);
-}
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+        {
+            playerAnimator.Play(blockStartAnimID, 0);
+        }
+    }
+    public void PlayBlockImpactAnim()
+    {
+        if (hp.dead)
+            return;
+        playerAnimator.Play(blockImpactAnimID, 0);
+
+    }
+
+    public void PlayTakeDamage()
+    {
+        if (hp.dead)
+            return;
+        playerAnimator.Play(impactAnimID, 0);
+    }
 
 
 }

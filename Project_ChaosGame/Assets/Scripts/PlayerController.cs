@@ -66,6 +66,19 @@ public class PlayerController : MonoBehaviour
     //It stores the input Vector as a Vector3 to then be used by the smoothing function.
 
 
+    public void OnCharge(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started || ctx.performed)
+        {
+            GetComponent<Fight>().chargeUp = true;
+        }
+        if (ctx.canceled)
+        {
+            playerAnim.PlayChargeAnim();
+            GetComponent<Fight>().chargeUp = false;
+
+        }
+    }
     public void OnThrow(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)

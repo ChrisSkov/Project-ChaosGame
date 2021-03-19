@@ -94,12 +94,12 @@
                     "interactions": "Tap"
                 },
                 {
-                    "name": "ThrowShield",
+                    "name": "Charge",
                     "type": "Button",
                     "id": "13d6f7ef-e1e1-413c-afc9-dd72a3a11a0d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Hold(duration=2)"
                 }
             ],
             "bindings": [
@@ -385,7 +385,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrowShield",
+                    "action": "Charge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

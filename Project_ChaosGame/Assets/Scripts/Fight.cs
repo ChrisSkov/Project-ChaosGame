@@ -15,13 +15,14 @@ public class Fight : MonoBehaviour
     public Transform throwAim;
     public Transform slamEffectPos;
 
-    [Header("Damage values")]
+    [Header("Combat values")]
     public float atk_1DMG = 8f;
     public float atk_2DMG = 12f;
-    public float atk_3DMG = 20f;
+    public float atk_3DMG = 200f;
     public float throwDMG = 20f;
     public float shovelRadius = 0.7f;
-
+    public float chargeForce = 3f;
+    public float newChargeForce = 3f;
 
     [Header("Cooldown and timers")]
     public int atkCount = 0;
@@ -34,6 +35,7 @@ public class Fight : MonoBehaviour
     [Header("Effects")]
     public GameObject[] atkEffects;
     public GameObject[] blockEffects;
+    public GameObject slashEffect;
 
     [Header("Audio")]
     public AudioClip[] swingSounds;
@@ -45,17 +47,22 @@ public class Fight : MonoBehaviour
     public GameObject[] playerWeps;
     public GameObject[] shields;
 
+    public GameObject[] throwingShields;
+
     [Header("UI")]
     public TMP_Text text;
     bool canCancel = true;
     public bool blockAttacks = false;
     bool canAttack = true;
-
+    bool charge = false;
+    Rigidbody rb;
     public bool canThrow = false;
+    public bool chargeUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<PlayerAnimation>();
         playerWeps[id].gameObject.SetActive(true);
         shields[id].gameObject.SetActive(true);
@@ -66,7 +73,12 @@ public class Fight : MonoBehaviour
     void Update()
     {
         ThrowAnimEvent();
+        ChargeAnimEvent();
 
+        if (chargeUp)
+        {
+            StartChargeUp();
+        }
         atkTimer += Time.deltaTime;
         if (atkTimer >= atkCD)
         {
@@ -86,6 +98,50 @@ public class Fight : MonoBehaviour
             }
         }
     }
+
+
+    public void StartChargeUp()
+    {
+        newChargeForce += Time.deltaTime * 10;
+    }
+    public void StartCharge()
+    {
+        charge = true;
+    }
+    public void ChargeAnimEvent()
+    {
+        if (charge)
+        {
+            if (newChargeForce >= chargeForce * 2)
+            {
+                rb.AddForce(transform.forward * (chargeForce + newChargeForce), ForceMode.Impulse);
+            }
+            else
+            {
+
+                rb.AddForce(transform.forward * chargeForce * 1.25f, ForceMode.Impulse);
+            }
+        }
+    }
+
+
+    public void ResetAttackCount()
+    {
+        atkCount = 0;
+    }
+    public void StopCharge()
+    {
+        charge = false;
+        newChargeForce = chargeForce;
+    }
+
+    public void ShieldThrowAnimEvent()
+    {
+        GameObject clone = Instantiate(throwingShields[id], shields[id].transform.position, transform.rotation);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * chargeForce, ForceMode.Impulse);
+
+    }
+
     public void OnAttack(InputAction.CallbackContext value)
     {
         if (value.performed)
@@ -97,7 +153,7 @@ public class Fight : MonoBehaviour
     public void DetectHit(Collider c)
     {
 
-        if (atkCount == 0)
+        if (atkCount == 1)
         {
             c.GetComponent<Health>().TakeDamage(atk_1DMG, id, gameObject);
             if (c.GetComponent<Fight>().id != id)
@@ -105,7 +161,7 @@ public class Fight : MonoBehaviour
                 SpawnAtkEffect();
             }
         }
-        else if (atkCount == 1)
+        else if (atkCount == 2)
         {
             c.GetComponent<Health>().TakeDamage(atk_2DMG, id, gameObject);
             if (c.GetComponent<Fight>().id != id)
@@ -114,7 +170,16 @@ public class Fight : MonoBehaviour
 
             }
         }
-        atkCount++;
+        else if (atkCount == 3)
+        {
+            GameObject clone = Instantiate(slashEffect, playerWeps[id].transform.position, transform.rotation);
+            Destroy(clone, 2f);
+            c.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
+            if (c.GetComponent<Fight>().id != id)
+            {
+                SpawnAtkEffect();
+            }
+        }
         if (atkCount > atkCountMax)
         {
             atkCount = 0;
@@ -177,6 +242,8 @@ public class Fight : MonoBehaviour
     public void EnableHitBox()
     {
         hitBox.enabled = true;
+        atkCount++;
+
     }
 
     public void DisableHitBox()

@@ -59483,7 +59483,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
+  - time: 0.55
     functionName: AttackSoundEvent
     data: 
     objectReferenceParameter: {fileID: 0}
