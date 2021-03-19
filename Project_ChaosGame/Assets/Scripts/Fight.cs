@@ -21,6 +21,7 @@ public class Fight : MonoBehaviour
     public float atk_3DMG = 200f;
     public float throwDMG = 20f;
     public float shovelRadius = 0.7f;
+    public float thirdAtkRadius = 3f;
     public float chargeForce = 3f;
     public float newChargeForce = 3f;
 
@@ -99,15 +100,20 @@ public class Fight : MonoBehaviour
         }
     }
 
+    //Anim Event
 
     public void StartChargeUp()
     {
         newChargeForce += Time.deltaTime * 10;
     }
+    //Anim Event
+
     public void StartCharge()
     {
         charge = true;
     }
+    //Anim Event
+
     public void ChargeAnimEvent()
     {
         if (charge)
@@ -124,16 +130,20 @@ public class Fight : MonoBehaviour
         }
     }
 
+    //Anim Event
 
     public void ResetAttackCount()
     {
         atkCount = 0;
     }
+    //Anim Event
+
     public void StopCharge()
     {
         charge = false;
         newChargeForce = chargeForce;
     }
+    //Anim Event
 
     public void ShieldThrowAnimEvent()
     {
@@ -141,6 +151,7 @@ public class Fight : MonoBehaviour
         clone.GetComponent<Rigidbody>().AddForce(transform.forward * chargeForce, ForceMode.Impulse);
 
     }
+    //Anim Event
 
     public void OnAttack(InputAction.CallbackContext value)
     {
@@ -170,16 +181,6 @@ public class Fight : MonoBehaviour
 
             }
         }
-        else if (atkCount == 3)
-        {
-            GameObject clone = Instantiate(slashEffect, playerWeps[id].transform.position, transform.rotation);
-            Destroy(clone, 2f);
-            c.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
-            if (c.GetComponent<Fight>().id != id)
-            {
-                SpawnAtkEffect();
-            }
-        }
         if (atkCount > atkCountMax)
         {
             atkCount = 0;
@@ -187,6 +188,8 @@ public class Fight : MonoBehaviour
 
     }
 
+
+    //Anim Event
     public void SpawnBlockEffect()
     {
 
@@ -194,27 +197,53 @@ public class Fight : MonoBehaviour
         Destroy(clone, 2f);
     }
 
+    //Anim Event
     private void SpawnAtkEffect()
     {
         GameObject clone = Instantiate(atkEffects[atkCount], shovelTip.position, transform.rotation);
         Destroy(clone, 2f);
     }
 
+    //Anim Event
     public void SlamJumpSound()
     {
         GetComponent<AudioSource>().PlayOneShot(slamJumpSounds[Random.Range(0, slamJumpSounds.Length)]);
     }
 
 
+    //Anim Event
     public void StartThrowEvent()
     {
         canThrow = true;
     }
 
+    //Anim Event
     public void StopThrowEvent()
     {
         canThrow = false;
     }
+    //Anim Event
+    public void ThirdAttack()
+    {
+        LayerMask mask = LayerMask.GetMask("Hitable");
+        GameObject clone = Instantiate(slashEffect, playerWeps[id].transform.position, transform.rotation);
+        Destroy(clone, 2f);
+        foreach (Collider c in Physics.OverlapSphere(throwAim.position, thirdAtkRadius, mask))
+        {
+            if (c.gameObject.tag == "Player")
+            {
+                if (c.GetComponent<Health>().myID != id)
+                {
+                    c.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
+                    if (c.GetComponent<Fight>().id != id)
+                    {
+                        SpawnAtkEffect();
+                    }
+                }
+            }
+        }
+    }
+
     public void ThrowAnimEvent()
     {
         LayerMask mask = LayerMask.GetMask("Hitable");
@@ -277,5 +306,11 @@ public class Fight : MonoBehaviour
     public void BlockAttacksEnd()
     {
         blockAttacks = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(throwAim.position,thirdAtkRadius);
     }
 }

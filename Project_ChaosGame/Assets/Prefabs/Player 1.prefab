@@ -1179,6 +1179,7 @@ MonoBehaviour:
   atk_3DMG: 20
   throwDMG: 20
   shovelRadius: 1.25
+  thirdAtkRadius: 3
   chargeForce: 2
   newChargeForce: 3
   atkCount: 0
@@ -1188,6 +1189,8 @@ MonoBehaviour:
   atkCD: 3
   atkTimer: Infinity
   atkEffects:
+  - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
+  - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
   - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
   - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
   blockEffects:
@@ -1270,7 +1273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.12
   m_Pitch: 1
   Loop: 0
   Mute: 0
