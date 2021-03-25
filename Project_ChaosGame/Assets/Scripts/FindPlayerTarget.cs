@@ -20,7 +20,6 @@ public class FindPlayerTarget : MonoBehaviour
     public void UpdateTargetGroup()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        print(players.Length);
         group.m_Targets = new Cinemachine.CinemachineTargetGroup.Target[GameObject.FindGameObjectsWithTag("Player").Length];
         if(group.m_Targets.Length <= 2)
         {

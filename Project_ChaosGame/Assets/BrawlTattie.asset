@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e8a4708088ef84f87776c96da8f7a3, type: 3}
+  m_Name: BrawlTattie
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  moveSmoothing: 5
+  rotationSpeed: 0.15
+  maxHealth: 100
+  lightAtk_1: 8
+  lightAtk_2: 8
+  heavyFinisherDMG: 14
+  lightFinisherDMG: 12
+  takeDmgSounds:
+  - {fileID: 8300000, guid: 34da9e257197070428d8a36ef4b08356, type: 3}
+  - {fileID: 8300000, guid: 3bb07853ed464784990d20ec1e26b7a9, type: 3}
+  - {fileID: 8300000, guid: 618529203ed2bd149950c0d3f396873a, type: 3}
+  - {fileID: 8300000, guid: 298045c584fd3cc439bdea769c84320c, type: 3}
+  finisherSounds: []
+  swingSounds:
+  - {fileID: 8300000, guid: d9cb4b1696eb6c440917f65382487702, type: 3}
+  deathSounds: []
+  attackEffects:
+  - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
+  bloodEffects:
+  - {fileID: 6716172745524632473, guid: 22212031a1e1aa3448182c5321184269, type: 3}

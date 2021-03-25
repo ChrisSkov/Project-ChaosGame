@@ -7,13 +7,13 @@ public class Fight : MonoBehaviour
 {
     public int id;
     PlayerAnimation playerAnim;
-    public PlayerScriptObj player;
+    //public PlayerScriptObj player;
     public Collider hitBox;
 
     [Header("Transforms")]
     public Transform shovelTip;
     public Transform throwAim;
-    public Transform slamEffectPos;
+    // public Transform slamEffectPos;
 
     [Header("Combat values")]
     public float atk_1DMG = 8f;
@@ -40,21 +40,20 @@ public class Fight : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip[] swingSounds;
-    public AudioClip[] hitSounds;
-    public AudioClip[] slamSounds;
+    // public AudioClip[] hitSounds;
+    // public AudioClip[] slamSounds;
     public AudioClip[] slamJumpSounds;
 
     [Header("Weapons")]
     public GameObject[] playerWeps;
     public GameObject[] shields;
-
     public GameObject[] throwingShields;
 
     [Header("UI")]
     public TMP_Text text;
-    bool canCancel = true;
+    // bool canCancel = true;
     public bool blockAttacks = false;
-    bool canAttack = true;
+    public bool canAttack = true;
     bool charge = false;
     Rigidbody rb;
     public bool canThrow = false;
@@ -225,54 +224,77 @@ public class Fight : MonoBehaviour
     //Anim Event
     public void ThirdAttack()
     {
-        LayerMask mask = LayerMask.GetMask("Hitable");
+        Collider c = OverLapMySphereDaddy(throwAim.position, thirdAtkRadius);
+        // LayerMask mask = LayerMask.GetMask("Hitable");
         GameObject clone = Instantiate(slashEffect, playerWeps[id].transform.position, transform.rotation);
         Destroy(clone, 2f);
-        foreach (Collider c in Physics.OverlapSphere(throwAim.position, thirdAtkRadius, mask))
+
+        if (c.gameObject != null)
         {
-            if (c.gameObject.tag == "Player")
+            c.gameObject.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
+            if (c.gameObject.GetComponent<Fight>().id != id)
             {
-                if (c.GetComponent<Health>().myID != id)
-                {
-                    c.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
-                    if (c.GetComponent<Fight>().id != id)
-                    {
-                        SpawnAtkEffect();
-                    }
-                }
+                SpawnAtkEffect();
             }
         }
+
+        // foreach (Collider c in Physics.OverlapSphere(throwAim.position, thirdAtkRadius, mask))
+        // {
+        //     if (c.gameObject.tag == "Player")
+        //     {
+        //         if (c.GetComponent<Health>().myID != id)
+        //         {
+        //             c.GetComponent<Health>().TakeDamage(atk_3DMG, id, gameObject);
+        //             if (c.GetComponent<Fight>().id != id)
+        //             {
+        //                 SpawnAtkEffect();
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     public void ThrowAnimEvent()
     {
-        LayerMask mask = LayerMask.GetMask("Hitable");
         if (canThrow)
         {
-            foreach (Collider c in Physics.OverlapSphere(throwAim.position, shovelRadius, mask))
+            Collider c = OverLapMySphereDaddy(throwAim.position, shovelRadius);
+            if(c.gameObject != null)
             {
-                if (c.gameObject.tag == "Player")
-                {
-                    if (c.GetComponent<Health>().myID != id)
-                    {
-                        c.transform.LookAt(transform.position);
-                        transform.LookAt(c.transform.position);
-                        if (!c.GetComponent<Health>().dead)
-                        {
-                            c.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
-                            canThrow = false;
-                        }
-                    }
-                }
+            c.gameObject.transform.LookAt(transform.position);
+            transform.LookAt(c.transform.position);
+            if (!c.gameObject.GetComponent<Health>().dead)
+            {
+                c.gameObject.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
+                canThrow = false;
+            }
             }
         }
     }
+
+    private Collider OverLapMySphereDaddy(Vector3 pos, float radius)
+    {
+        Collider enemyCollider = null;
+        LayerMask mask = LayerMask.GetMask("Hitable");
+        foreach (Collider c in Physics.OverlapSphere(pos, radius, mask))
+        {
+            if (c.gameObject.tag == "Player")
+            {
+                if (c.gameObject.GetComponent<Health>().myID != id)
+                {
+                    enemyCollider = c;
+                    return enemyCollider;
+                }
+            }
+        }
+        return enemyCollider;
+    }
+
 
     public void EnableHitBox()
     {
         hitBox.enabled = true;
         atkCount++;
-
     }
 
     public void DisableHitBox()
@@ -284,15 +306,15 @@ public class Fight : MonoBehaviour
         GetComponent<Health>().TakeDamage(throwDMG, 4, gameObject);
     }
 
-    public void CanCancel()
-    {
-        canCancel = true;
-    }
+    // public void CanCancel()
+    // {
+    //     canCancel = true;
+    // }
 
-    public void CannotCancel()
-    {
-        canCancel = false;
-    }
+    // public void CannotCancel()
+    // {
+    //     canCancel = false;
+    // }
     public void AttackSoundEvent()
     {
         GetComponent<AudioSource>().PlayOneShot(swingSounds[Random.Range(0, swingSounds.Length)]);
@@ -311,6 +333,6 @@ public class Fight : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(throwAim.position,thirdAtkRadius);
+        Gizmos.DrawWireSphere(throwAim.position, thirdAtkRadius);
     }
 }

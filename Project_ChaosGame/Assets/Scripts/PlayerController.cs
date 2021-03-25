@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Scripts references")]
@@ -40,9 +42,12 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        CalculateMovementInputSmoothing();
-        UpdatePlayerMovement();
-        UpdatePlayerAnimationMovement();
+        else
+        {
+            CalculateMovementInputSmoothing();
+            UpdatePlayerMovement();
+            UpdatePlayerAnimationMovement();
+        }
     }
 
     //Input's Axes values are raw
@@ -100,6 +105,11 @@ public class PlayerController : MonoBehaviour
         {
             playerAnim.PlayDodgeAnimation();
             dodgeTimer = 0;
+        }
+        if (GetComponent<Health>().dead || GetComponent<Health>().winner)
+        {
+            SceneManager.LoadScene(0);
+
         }
     }
 

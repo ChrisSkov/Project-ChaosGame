@@ -392,7 +392,7 @@
             ]
         },
         {
-            "name": "Menu Controls",
+            "name": "Menu",
             "id": "0f208fd7-9c7c-42ff-a48c-dbd8d98ce9d0",
             "actions": [
                 {
@@ -723,7 +723,7 @@
                 {
                     "name": "",
                     "id": "05621e47-9c79-447d-99f0-13a8ff9b43c3",
-                    "path": "*/{Cancel}",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -756,7 +756,7 @@
                 {
                     "name": "",
                     "id": "1d01aaeb-da96-4b67-bb4e-8dee89d014b7",
-                    "path": "*/{Submit}",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

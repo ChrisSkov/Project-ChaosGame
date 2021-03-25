@@ -1089,26 +1089,14 @@ MonoBehaviour:
     m_ActionId: 342748c2-0304-44e3-8695-c68dc90028c9
     m_ActionName: Player/Flex[/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1920151324251297274}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnCharge
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 13d6f7ef-e1e1-413c-afc9-dd72a3a11a0d
     m_ActionName: Player/ThrowShield[/DualShock4GamepadHID/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 7352660947278522575, guid: 2351e41d6e04d9d4683849d19e8b69c1, type: 3}
 --- !u!114 &1920151324251297274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1144,7 @@ MonoBehaviour:
   slowFactor: 1
   rotateSlowFactor: 1
   player: {fileID: 11400000, guid: 19effe34f7b65f349be95d5bd7bc0b9e, type: 2}
+  canMove: 1
 --- !u!114 &6782309718107100970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,15 +1158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  player: {fileID: 11400000, guid: 19effe34f7b65f349be95d5bd7bc0b9e, type: 2}
   hitBox: {fileID: 3779819161853554597}
   shovelTip: {fileID: 7546704087411725125}
   throwAim: {fileID: 269221525}
-  slamEffectPos: {fileID: 3922643630898571480}
   atk_1DMG: 8
-  atk_2DMG: 15
-  atk_3DMG: 20
-  throwDMG: 20
+  atk_2DMG: 12
+  atk_3DMG: 15
+  throwDMG: 15
   shovelRadius: 1.25
   thirdAtkRadius: 3
   chargeForce: 2
@@ -1199,11 +1186,6 @@ MonoBehaviour:
   slashEffect: {fileID: 1819066416490906, guid: f71e64e1ba018eb419bd5e9e3ca8a65c, type: 3}
   swingSounds:
   - {fileID: 8300000, guid: d9cb4b1696eb6c440917f65382487702, type: 3}
-  hitSounds:
-  - {fileID: 8300000, guid: 0b743c643cf4ee14bb917da4e7c6c8bf, type: 3}
-  - {fileID: 8300000, guid: 43243f92f398aa743a7cc03e4b048c72, type: 3}
-  slamSounds:
-  - {fileID: 8300000, guid: ea82ddb032396d648a4accb8c20c9140, type: 3}
   slamJumpSounds:
   - {fileID: 8300000, guid: 05273ac0e8d9e76448462f82dd6db3dd, type: 3}
   - {fileID: 8300000, guid: 5c6e11e593996a544862f531ee21ffa6, type: 3}
@@ -1218,6 +1200,7 @@ MonoBehaviour:
   - {fileID: 374453376969351978, guid: e33a2a334cfef1147b94dcc5828879f8, type: 3}
   text: {fileID: 1931304455}
   blockAttacks: 0
+  canAttack: 1
   canThrow: 0
   chargeUp: 0
 --- !u!114 &-7473546226207553849
@@ -1232,6 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9667d90f7cb1f704c8234ea5a952b1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionMaps: {fileID: -944628639613478452, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
   maxHealth: 100
   currentHealth: 0
   dead: 0
@@ -1261,6 +1245,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 27ba8334c51588d4a8f97ebaef46a3b9, type: 3}
   bloodPos: {fileID: 269221525}
   chillBlood: {fileID: 6716172745524632473, guid: 22212031a1e1aa3448182c5321184269, type: 3}
+  winner: 0
+  uIControl: {fileID: 7059328459382889768, guid: 0f254999575a02d4aaad6e332d2cd04e, type: 3}
 --- !u!82 &279790789
 AudioSource:
   m_ObjectHideFlags: 0

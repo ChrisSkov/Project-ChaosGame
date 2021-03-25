@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     PlayerAnimation playerAnim;
+    public InputActionAsset actionMaps;
     [Header("Health values")]
     public float maxHealth = 100f;
     public float currentHealth;
@@ -26,6 +28,8 @@ public class Health : MonoBehaviour
     GameObject gameOverScreen;
 
     bool reducedDMG = false;
+    public bool winner = false;
+    public UIControl uIControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,9 @@ public class Health : MonoBehaviour
         source = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         hpSlider.maxValue = maxHealth;
+        
+       // GetComponent<PlayerInput>().currentActionMap = actionMaps.FindActionMap("Player");
+        winner = false;
     }
 
     // Update is called once per frame
@@ -49,12 +56,26 @@ public class Health : MonoBehaviour
         //     gameOverScreen.transform.GetChild(0).gameObject.SetActive(false);
 
         // }
+        if (winner)
+        {
+            //GetComponent<PlayerInput>().currentActionMap = actionMaps.FindActionMap("Menu");
+            gameOverScreen.GetComponent<UIControl>().WinGame(myID + 1);
+            playerAnim.playerAnimator.SetTrigger("winner");
+            GetComponent<PlayerMovement>().canMove = false;
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void TakeDamage(float dmg, int id, GameObject attacker)
     {
         if (dead)
+        {
+            GetComponent<PlayerMovement>().canMove = false;
             return;
+        }
         if (id != myID)
         {
             if (reducedDMG)
@@ -89,6 +110,7 @@ public class Health : MonoBehaviour
                 if (!dead)
                 {
                     playerAnim.PlayDeathAnimation();
+                    attacker.GetComponent<Health>().winner = true;
                     SpawnChillBlood();
                     dead = true;
                 }

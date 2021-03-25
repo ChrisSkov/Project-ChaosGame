@@ -14,8 +14,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 movementDirection;
     Rigidbody rb;
     bool rotateSlow = false;
-    bool canMove = true;
+    public bool canMove = true;
     bool moveSlow = false;
+    
     bool canRotate = true;
     // Start is called before the first frame update
     void Start()
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveSlow)
         {
-            slowFactor = 1.65f;
+            slowFactor = 3f;
         }
         else
         {

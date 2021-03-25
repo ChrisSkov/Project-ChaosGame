@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
     private int flexAnimID;
     private int atk_3AnimID;
     private int chargeAnimID;
+    private int downAnimID;
     Health hp;
     public void SetupBehaviour()
     {
@@ -67,6 +68,13 @@ public class PlayerAnimation : MonoBehaviour
         flexAnimID = Animator.StringToHash("Flex");
         atk_3AnimID = Animator.StringToHash("Atk_3");
         chargeAnimID = Animator.StringToHash("Charge");
+        downAnimID = Animator.StringToHash("Down");
+    }
+
+
+    public void PlayDownAnim()
+    {
+        playerAnimator.Play(downAnimID);
     }
 
     public void PlayChargeAnim()
@@ -155,6 +163,10 @@ public class PlayerAnimation : MonoBehaviour
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
         {
             playerAnimator.Play(dodgeAnimID, 0);
+        }
+        else
+        {
+            playerAnimator.SetTrigger("dodge");
         }
     }
     public void PlayJumpAnimation()
