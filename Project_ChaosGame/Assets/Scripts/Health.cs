@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
         source = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         hpSlider.maxValue = maxHealth;
-        
+        dead = false;
        // GetComponent<PlayerInput>().currentActionMap = actionMaps.FindActionMap("Player");
         winner = false;
     }
@@ -71,6 +71,8 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float dmg, int id, GameObject attacker)
     {
+       
+
         if (dead)
         {
             GetComponent<PlayerMovement>().canMove = false;
@@ -78,6 +80,7 @@ public class Health : MonoBehaviour
         }
         if (id != myID)
         {
+            print("hej");
             if (reducedDMG)
             {
                 currentHealth -= dmg / 2;

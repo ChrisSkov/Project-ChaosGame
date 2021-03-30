@@ -12,6 +12,7 @@ public class BrawlScriptObj : ScriptableObject
     public float lightAtk_2;
     public float heavyFinisherDMG;
     public float lightFinisherDMG;
+    public bool gameOver = false;
     public AudioClip[] takeDmgSounds;
     public AudioClip[] finisherSounds;
     public AudioClip[] swingSounds;

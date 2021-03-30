@@ -163,9 +163,11 @@ public class Fight : MonoBehaviour
     public void DetectHit(Collider c)
     {
 
+        print("hit");
         if (atkCount == 1)
         {
             c.GetComponent<Health>().TakeDamage(atk_1DMG, id, gameObject);
+            print("hit2");
             if (c.GetComponent<Fight>().id != id)
             {
                 SpawnAtkEffect();
@@ -259,15 +261,15 @@ public class Fight : MonoBehaviour
         if (canThrow)
         {
             Collider c = OverLapMySphereDaddy(throwAim.position, shovelRadius);
-            if(c.gameObject != null)
+            if (c.gameObject != null)
             {
-            c.gameObject.transform.LookAt(transform.position);
-            transform.LookAt(c.transform.position);
-            if (!c.gameObject.GetComponent<Health>().dead)
-            {
-                c.gameObject.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
-                canThrow = false;
-            }
+                c.gameObject.transform.LookAt(transform.position);
+                transform.LookAt(c.transform.position);
+                if (!c.gameObject.GetComponent<Health>().dead)
+                {
+                    c.gameObject.GetComponent<PlayerAnimation>().PlayIsThrownAnim();
+                    canThrow = false;
+                }
             }
         }
     }

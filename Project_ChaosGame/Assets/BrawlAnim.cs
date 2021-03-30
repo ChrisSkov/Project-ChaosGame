@@ -21,12 +21,6 @@ public class BrawlAnim : MonoBehaviour
     {
         brawlMoveAnimID = Animator.StringToHash("forwardSpeed");
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void PlayDodgeAnim()
     {
         anim.CrossFade("DodgeRoll 1", 0f,0);

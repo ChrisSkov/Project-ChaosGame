@@ -13,8 +13,8 @@ public class BrawlController : MonoBehaviour
     public BrawlScriptObj brawlerTattie;
     PlayerInput playerInput;
     //Action Maps
-    private string actionMapPlayerControls = "Player Controls";
-    private string actionMapMenuControls = "Menu Controls";
+    private string actionMapPlayerControls = "Player";
+    private string actionMapMenuControls = "Menu";
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,10 @@ public class BrawlController : MonoBehaviour
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
         UpdatePlayerAnimationMovement();
+        if(brawlHealth.isDead)
+        {
+            EnablePauseMenuControls();
+        }
     }
 
 
@@ -79,10 +83,8 @@ public class BrawlController : MonoBehaviour
         rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
     }
 
+
     //Switching Action Maps ----
-
-
-
     public void EnableGameplayControls()
     {
         playerInput.SwitchCurrentActionMap(actionMapPlayerControls);
