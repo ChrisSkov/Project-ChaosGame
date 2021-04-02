@@ -517,13 +517,16 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 750229108644088278}
     m_Position: {x: 920, y: -540, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2808395793899660255}
+    m_Position: {x: 1160, y: -210, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -185377090732298879}
     m_Position: {x: 540, y: -450, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 4144194976892317681}
-    m_Position: {x: 900, y: -140, z: 0}
+    m_Position: {x: 900, y: -130, z: 0}
   m_AnyStateTransitions:
   - {fileID: 5776385330169039690}
   m_EntryTransitions: []
@@ -768,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dab05a7afc29f346bb524bce6503862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   turnOnColliderTime: 0.3
   turnOffColliderTime: 0.45
 --- !u!1101 &-2265929072568515337
@@ -1495,6 +1498,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &2808395793899660255
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TakeDamageBrawl
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 4f3c0b02fc68e9e4fb424cc53935093f, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &2962985317113185819
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -2057,7 +2086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dab05a7afc29f346bb524bce6503862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 7
   turnOnColliderTime: 0.45
   turnOffColliderTime: 0.55
 --- !u!1101 &5741223989368743232
