@@ -20,6 +20,7 @@ public class BrawlHealth : MonoBehaviour
         source = GetComponent<AudioSource>();
         player.gameOver = false;
         currentHealth = player.maxHealth;
+        UpdateHealthUI();
     }
 
     // Update is called once per frame
@@ -28,10 +29,12 @@ public class BrawlHealth : MonoBehaviour
         HandleDeath();
     }
 
-    public void BrawlTakeDamage(float damage)
+    public void BrawlTakeDamage(BrawlAttackScriptObj atkObj)
     {
-        currentHealth -= damage;
+        currentHealth -= atkObj.damage;
+        GetComponent<Animator>().Play(atkObj.hitFacing.ToString(),0);
         source.PlayOneShot(ChooseRandomHurtSound());
+        SpawnChillBlood();
         UpdateHealthUI();
     }
 
@@ -64,6 +67,7 @@ public class BrawlHealth : MonoBehaviour
         {
             currentHealth = 0;
             isDead = true;
+            GetComponent<BrawlAnim>().PlayDeathAnim();
             player.gameOver = true;
         }
     }

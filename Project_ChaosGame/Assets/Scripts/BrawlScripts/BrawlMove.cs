@@ -21,6 +21,10 @@ public class BrawlMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!canMove)
+        {
+            return;
+        }
         Cursor.lockState = CursorLockMode.Locked;
         MoveThePlayer();
         TurnThePlayer();

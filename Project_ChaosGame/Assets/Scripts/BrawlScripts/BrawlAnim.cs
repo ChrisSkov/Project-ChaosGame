@@ -11,6 +11,7 @@ public class BrawlAnim : MonoBehaviour
     private int heavyAttackAnimID;
     private int heavyFinisherAnimID;
     private int lightFinisherAnimID;
+    private int deadAnimID;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,16 @@ public class BrawlAnim : MonoBehaviour
     void SetupAnimationIDs()
     {
         brawlMoveAnimID = Animator.StringToHash("forwardSpeed");
+        deadAnimID = Animator.StringToHash("Death");
+        
+        
+    }
+    private void Update() {
+        
+    }
+    public void PlayDeathAnim()
+    {
+        anim.Play(deadAnimID,0);
     }
     public void PlayDodgeAnim()
     {

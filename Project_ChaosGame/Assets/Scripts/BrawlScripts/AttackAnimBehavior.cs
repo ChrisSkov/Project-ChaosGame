@@ -5,9 +5,8 @@ using UnityEngine;
 public class AttackAnimBehavior : StateMachineBehaviour
 {
 
-    public float damage = 5f;
-    public float turnOnColliderTime = 0.3f;
-    public float turnOffColliderTime = 0.45f;
+    public BrawlAttackScriptObj myAttack;
+
     KirkFu fight;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -15,7 +14,7 @@ public class AttackAnimBehavior : StateMachineBehaviour
     {
 
         fight = animator.gameObject.GetComponent<KirkFu>();
-        fight.SetCurrentDamage(damage);
+        fight.SetCurrentDamage(myAttack);
         fight.hasHit = false;
     }
 
@@ -24,7 +23,7 @@ public class AttackAnimBehavior : StateMachineBehaviour
     {
         if (!fight.hasHit)
         {
-            fight.TurnColliderOnForSeconds(turnOnColliderTime, turnOffColliderTime);
+            fight.TurnColliderOnForSeconds(myAttack.turnOnColliderTime, myAttack.turnOffColliderTime);
         }
     }
 

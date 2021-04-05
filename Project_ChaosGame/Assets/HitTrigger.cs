@@ -41,7 +41,7 @@ public class HitTrigger : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<BrawlHealth>().BrawlTakeDamage(brawler.GetCurrentDamage());
+                other.gameObject.GetComponent<BrawlHealth>().BrawlTakeDamage(brawler.GetCurrentAttack());
                 brawler.hasHit = true;
             }
             myCollider.enabled = false;

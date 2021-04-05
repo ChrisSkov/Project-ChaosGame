@@ -7,8 +7,9 @@ public class KirkFu : MonoBehaviour
 
     Animator anim;
     MeshCollider myCollider;
-    [SerializeField] float currentDamage = 0f;
     public bool hasHit = false;
+
+    BrawlAttackScriptObj currentAtkObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,13 @@ public class KirkFu : MonoBehaviour
         if (animRealTime >= startTime && animRealTime >= endTime)
         {
             myCollider.enabled = false;
+            hasHit = false;
         }
         if (animRealTime >= startTime && animRealTime < endTime)
         {
             myCollider.enabled = true;
         }
+        
 
     }
     public void DealDamage(float damage)
@@ -34,13 +37,13 @@ public class KirkFu : MonoBehaviour
 
     }
 
-    public void SetCurrentDamage(float dmg)
+    public void SetCurrentDamage(BrawlAttackScriptObj atkObj)
     {
-        currentDamage = dmg;
+        currentAtkObj = atkObj;
     }
-    public float GetCurrentDamage()
+    public BrawlAttackScriptObj GetCurrentAttack()
     {
-        return currentDamage;
+        return currentAtkObj;
     }
 
 }
