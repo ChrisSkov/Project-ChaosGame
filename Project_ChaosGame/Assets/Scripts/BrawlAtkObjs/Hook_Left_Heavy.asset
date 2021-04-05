@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hook_Left_Heavy
   m_EditorClassIdentifier: 
   damage: 5
-  turnOnColliderTime: 0.32
-  turnOffColliderTime: 0.55
+  turnOnColliderTime: 0.35
+  turnOffColliderTime: 0.85
   hitFacing: 0
   hitFacingAway: 1

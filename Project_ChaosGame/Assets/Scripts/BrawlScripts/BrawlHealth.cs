@@ -31,6 +31,8 @@ public class BrawlHealth : MonoBehaviour
 
     public void BrawlTakeDamage(BrawlAttackScriptObj atkObj)
     {
+        if(isDead)
+        return;
         currentHealth -= atkObj.damage;
         GetComponent<Animator>().Play(atkObj.hitFacing.ToString(),0);
         source.PlayOneShot(ChooseRandomHurtSound());
@@ -63,7 +65,7 @@ public class BrawlHealth : MonoBehaviour
 
     private void HandleDeath()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
         {
             currentHealth = 0;
             isDead = true;

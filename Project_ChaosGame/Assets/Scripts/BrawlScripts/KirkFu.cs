@@ -30,7 +30,6 @@ public class KirkFu : MonoBehaviour
             myCollider.enabled = true;
         }
         
-
     }
     public void DealDamage(float damage)
     {

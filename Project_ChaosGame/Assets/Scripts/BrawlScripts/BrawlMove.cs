@@ -5,14 +5,18 @@ using UnityEngine;
 public class BrawlMove : MonoBehaviour
 {
     public BrawlScriptObj player;
-    bool canMove = true;
+    public bool canMove = true;
+
+    public float currentSpeed;
     Camera mainCamera;
     Vector3 movementDirection;
     Rigidbody rb;
+    public float fadeInMultiplier = 20f;
+    public float fadeOutMultiplier = 20f;
     // Start is called before the first frame update
     void Start()
     {
-
+        currentSpeed = player.moveSpeed;
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
 
@@ -21,11 +25,15 @@ public class BrawlMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!canMove)
+        if (!canMove)
         {
             return;
         }
         Cursor.lockState = CursorLockMode.Locked;
+        if (currentSpeed >= player.moveSpeed)
+        {
+            currentSpeed = player.moveSpeed;
+        }
         MoveThePlayer();
         TurnThePlayer();
     }
@@ -56,12 +64,28 @@ public class BrawlMove : MonoBehaviour
     void MoveThePlayer()
     {
 
-        Vector3 movement = CameraDirection(movementDirection) * player.moveSpeed * Time.deltaTime;
+        Vector3 movement = CameraDirection(movementDirection) * currentSpeed * Time.deltaTime;
         if (canMove)
         {
             rb.MovePosition(transform.position + movement);
         }
     }
+
+    public void FadeMoveSpeedIn()
+    {
+        if (currentSpeed <= player.moveSpeed)
+        {
+            currentSpeed += fadeInMultiplier;
+        }
+    }
+    public void FadeMoveSpeedOut()
+    {
+        if (currentSpeed > 0)
+        {
+            currentSpeed -= fadeOutMultiplier;
+        }
+    }
+
     Vector3 CameraDirection(Vector3 movementDirection)
     {
         var cameraForward = mainCamera.transform.forward;

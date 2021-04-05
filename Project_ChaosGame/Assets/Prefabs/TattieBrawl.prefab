@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 3126624281745964783}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2111274351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111274352}
+  m_Layer: 6
+  m_Name: EffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111274352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111274351}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3126624281745964783}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &411273162392880296
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -209,6 +239,7 @@ Transform:
   - {fileID: 554427476378567637}
   - {fileID: 1080567521693088480}
   - {fileID: 1735832935}
+  - {fileID: 2111274352}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -521,6 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3126624281745964787}
+  exitTime: 0.32
 --- !u!114 &8486732640630594050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +584,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
+  canMove: 1
+  currentSpeed: 0
+  fadeInMultiplier: 0.5
+  fadeOutMultiplier: 0.35
 --- !u!114 &6198242377225907856
 MonoBehaviour:
   m_ObjectHideFlags: 0

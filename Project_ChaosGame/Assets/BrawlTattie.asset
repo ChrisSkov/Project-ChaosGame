@@ -20,6 +20,7 @@ MonoBehaviour:
   lightAtk_2: 8
   heavyFinisherDMG: 14
   lightFinisherDMG: 12
+  gameOver: 1
   takeDmgSounds:
   - {fileID: 8300000, guid: 34da9e257197070428d8a36ef4b08356, type: 3}
   - {fileID: 8300000, guid: 3bb07853ed464784990d20ec1e26b7a9, type: 3}
@@ -31,5 +32,6 @@ MonoBehaviour:
   deathSounds: []
   attackEffects:
   - {fileID: 112862, guid: 697346715cb12694f8c787d2336ecf3d, type: 3}
+  - {fileID: 1359640305893000, guid: 12eb3b21dbaaf5a4da911ebde19b8a7e, type: 3}
   bloodEffects:
   - {fileID: 6716172745524632473, guid: 22212031a1e1aa3448182c5321184269, type: 3}

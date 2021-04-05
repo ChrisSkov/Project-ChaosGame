@@ -8,11 +8,12 @@ public class AttackAnimBehavior : StateMachineBehaviour
     public BrawlAttackScriptObj myAttack;
 
     KirkFu fight;
-
+    bool hasSpawnedEffect = false;
+    public bool effect = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        hasSpawnedEffect = false;
         fight = animator.gameObject.GetComponent<KirkFu>();
         fight.SetCurrentDamage(myAttack);
         fight.hasHit = false;
@@ -24,6 +25,15 @@ public class AttackAnimBehavior : StateMachineBehaviour
         if (!fight.hasHit)
         {
             fight.TurnColliderOnForSeconds(myAttack.turnOnColliderTime, myAttack.turnOffColliderTime);
+        }
+        if (effect)
+        {
+            if (fight.hasHit && !hasSpawnedEffect)
+            {
+                GameObject clone = Instantiate(animator.GetComponent<BrawlMove>().player.attackEffects[1], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
+                Destroy(clone, 2f);
+                hasSpawnedEffect = true;
+            }
         }
     }
 
