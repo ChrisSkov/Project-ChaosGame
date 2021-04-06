@@ -18,9 +18,11 @@ public class BrawlHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         source = GetComponent<AudioSource>();
         player.gameOver = false;
         currentHealth = player.maxHealth;
+        hpSlider.maxValue = player.maxHealth;
         UpdateHealthUI();
     }
 
