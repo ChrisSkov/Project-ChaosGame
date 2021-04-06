@@ -10,12 +10,26 @@ public class AttackAnimBehavior : StateMachineBehaviour
     KirkFu fight;
     bool hasSpawnedEffect = false;
     public bool effect = false;
+    public bool effectChill = false;
+    bool audioHasPlayed = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hasSpawnedEffect = false;
+        GetKirkFuAndSetDamage(animator);
+        ResetBools();
+    }
+
+    private void GetKirkFuAndSetDamage(Animator animator)
+    {
         fight = animator.gameObject.GetComponent<KirkFu>();
         fight.SetCurrentDamage(myAttack);
+    }
+
+    private void ResetBools()
+    {
+
+        audioHasPlayed = false;
+        hasSpawnedEffect = false;
         fight.hasHit = false;
     }
 
@@ -25,6 +39,18 @@ public class AttackAnimBehavior : StateMachineBehaviour
         if (!fight.hasHit)
         {
             fight.TurnColliderOnForSeconds(myAttack.turnOnColliderTime, myAttack.turnOffColliderTime);
+        }
+        if (!audioHasPlayed && fight.hasHit)
+        {
+            fight.PlayImpactSound();
+            audioHasPlayed = true;
+        }
+        if (effectChill && !hasSpawnedEffect && fight.hasHit)
+        {
+            GameObject clone = Instantiate(animator.GetComponent<BrawlMove>().player.attackEffects[2], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
+            Destroy(clone, 2f);
+            hasSpawnedEffect = true;
+
         }
         if (effect)
         {

@@ -13,6 +13,7 @@ public class BrawlHealth : MonoBehaviour
     public Slider hpSlider;
     public Text hpText;
     AudioSource source;
+    public float takeDmgVolume = 0.18f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class BrawlHealth : MonoBehaviour
         return;
         currentHealth -= atkObj.damage;
         GetComponent<Animator>().Play(atkObj.hitFacing.ToString(),0);
+        source.volume = takeDmgVolume;
         source.PlayOneShot(ChooseRandomHurtSound());
         SpawnChillBlood();
         UpdateHealthUI();
