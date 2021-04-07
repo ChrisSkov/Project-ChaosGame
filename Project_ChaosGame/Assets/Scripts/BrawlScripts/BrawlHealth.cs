@@ -34,10 +34,25 @@ public class BrawlHealth : MonoBehaviour
 
     public void BrawlTakeDamage(BrawlAttackScriptObj atkObj)
     {
-        if(isDead)
-        return;
+        if (isDead)
+            return;
         currentHealth -= atkObj.damage;
-        GetComponent<Animator>().Play(atkObj.hitFacing.ToString(),0);
+        GetComponent<Animator>().Play(atkObj.hitFacing.ToString(), 0);
+        HandleTakeDamage();
+    }
+
+
+    public void TakeSpellDamage(SpellScriptObj spell)
+    {
+        if (isDead)
+            return;
+        currentHealth -= spell.damage;
+        GetComponent<Animator>().Play(spell.hitFacing.ToString(), 0);
+        HandleTakeDamage();
+    }
+
+    private void HandleTakeDamage()
+    {
         source.volume = takeDmgVolume;
         source.PlayOneShot(ChooseRandomHurtSound());
         SpawnChillBlood();

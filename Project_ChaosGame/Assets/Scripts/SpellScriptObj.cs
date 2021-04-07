@@ -10,6 +10,10 @@ public class SpellScriptObj : ScriptableObject
     public float damageRadius;
     public float spawnTime = 0.3f;
     public float lifeTime = 1.45f;
+
+    public GameObject collisionVFX;
+    public Hits hitFacing;
+    public Hits hitFacingAway;
     public enum Hits
     {
         HookLeft,
@@ -18,5 +22,11 @@ public class SpellScriptObj : ScriptableObject
         GutPunch,
         Straight,
         LaunchUppercut
+    }
+
+    public void SpawnCollissionEffect(Transform pos)
+    {
+        GameObject clone = Instantiate(collisionVFX, pos.position, pos.rotation);
+        Destroy(clone, 2f);
     }
 }

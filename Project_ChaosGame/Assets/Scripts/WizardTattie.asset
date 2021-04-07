@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e8a4708088ef84f87776c96da8f7a3, type: 3}
   m_Name: WizardTattie
   m_EditorClassIdentifier: 
-  moveSpeed: 4.85
+  moveSpeed: 4
   moveSmoothing: 5
   rotationSpeed: 0.15
   maxHealth: 85

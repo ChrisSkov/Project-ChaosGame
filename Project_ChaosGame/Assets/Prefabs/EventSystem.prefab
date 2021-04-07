@@ -61,12 +61,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
-  m_PointAction: {fileID: 4903634168000877099, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
-  m_MoveAction: {fileID: 1041166891139009946, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
-  m_SubmitAction: {fileID: 6954468102703316608, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
-  m_CancelAction: {fileID: -6537031518590080218, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
-  m_LeftClickAction: {fileID: -630185917041336134, guid: 27805c91a74afa94d9868eb2e96586d6, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
+  m_PointAction: {fileID: 4903634168000877099, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
+  m_MoveAction: {fileID: 1041166891139009946, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
+  m_SubmitAction: {fileID: 6954468102703316608, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
+  m_CancelAction: {fileID: -6537031518590080218, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
+  m_LeftClickAction: {fileID: -630185917041336134, guid: 4f2e5f04257f62742b97058daf48e546, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}

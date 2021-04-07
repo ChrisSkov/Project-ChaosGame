@@ -4,24 +4,12 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    public GameObject lightAttackPrefab;
-    public GameObject heavyAttackPrefab;
-
+    public SpellScriptObj currentSpell;
     public Transform spellCastPos;
-    // Start is called before the first frame update
-    void Start()
+    public void CastSpell()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SpawnSpellEffect(GameObject spell)
-    {
-        GameObject clone = Instantiate(spell, spellCastPos.position,Quaternion.identity);
+        GameObject clone = Instantiate(currentSpell.spellPrefab, spellCastPos.position, transform.rotation);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * currentSpell.force, ForceMode.Impulse);
+        Destroy(clone, currentSpell.lifeTime);
     }
 }

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379e8077a0316ce4fa3ded05038d3ab4, type: 3}
   m_Name: Wizard_AutoAttack
   m_EditorClassIdentifier: 
-  spellPrefab: {fileID: 0}
-  force: 12
-  damage: 8
+  spellPrefab: {fileID: 3319083753328944506, guid: 9b02b69bcdc34a742a1d950c2866f2bb, type: 3}
+  force: 8
+  damage: 5
   damageRadius: 2
-  spawnTime: 0.3
-  lifeTime: 1.45
+  spawnTime: 0.5
+  lifeTime: 1.3
+  collisionVFX: {fileID: 5350651112733339566, guid: a1994d93d5fc813438e56ee92b5b7ff9, type: 3}
+  hitFacing: 0
+  hitFacingAway: 1
