@@ -12,8 +12,8 @@ public class GameMangement : MonoBehaviour
     public bool brawl = true;
     public int myIndex = 0;
     public GameObject[] playerPrefabs;
-    public GameObject p1;
-    public GameObject p2;
+
+    public PlayerInput currentPlayerInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +23,11 @@ public class GameMangement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        print(currentPlayerInput.currentActionMap);
     }
 
     public void OnJoinGame(PlayerInput input)
     {
-        //    Instantiate(playerPrefabs[myIndex], spawnPoints[count].position, spawnPoints[count].rotation);
         //     if (!brawl)
         //     {
 
@@ -36,19 +35,34 @@ public class GameMangement : MonoBehaviour
         //         input.gameObject.GetComponent<Health>().myID = count;
         //     }
         HandleSpawnPlayerPosition(input);
+        currentPlayerInput = input;
     }
 
     private void HandleSpawnPlayerPosition(PlayerInput input)
     {
         input.transform.position = spawnPoints[count].position;
         input.transform.LookAt(lookAtStart.position);
-        count++;
-
+        if (count < spawnPoints.Length)
+        {
+            count++;
+        }
     }
 
     public void OnSelectChar(int playerPrefabIndex)
     {
-        
+
         myIndex = playerPrefabIndex;
+        if (myIndex == 0)
+        {
+            currentPlayerInput.GetComponent<SelectCharacter>().mage = true;
+            currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
+            currentPlayerInput = null;
+        }
+        if (myIndex == 1)
+        {
+            currentPlayerInput.GetComponent<SelectCharacter>().warrior = true;
+            currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
+            currentPlayerInput = null;
+        }
     }
 }

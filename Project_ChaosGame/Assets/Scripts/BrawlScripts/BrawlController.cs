@@ -18,10 +18,13 @@ public class BrawlController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         playerInput = GetComponent<PlayerInput>();
         brawlHealth = GetComponent<BrawlHealth>();
         brawlAnim = GetComponent<BrawlAnim>();
         playerMove = GetComponent<BrawlMove>();
+        playerInput.SwitchCurrentActionMap(playerInput.defaultActionMap);
+
     }
 
     // Update is called once per frame
@@ -30,7 +33,7 @@ public class BrawlController : MonoBehaviour
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
         UpdatePlayerAnimationMovement();
-        if(brawlHealth.isDead)
+        if (brawlHealth.isDead)
         {
             EnablePauseMenuControls();
         }
@@ -39,6 +42,7 @@ public class BrawlController : MonoBehaviour
 
     public void OnLightAttack(InputAction.CallbackContext ctx)
     {
+        print("satan");
         if (ctx.performed)
         {
             brawlAnim.PlayLightAttackAnim();

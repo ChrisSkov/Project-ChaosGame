@@ -47,7 +47,7 @@ public class AttackAnimBehavior : StateMachineBehaviour
         }
         if (effectChill && !hasSpawnedEffect && fight.hasHit)
         {
-            GameObject clone = Instantiate(animator.GetComponent<BrawlMove>().player.attackEffects[2], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
+            GameObject clone = Instantiate(fight.player.attackEffects[2], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
             Destroy(clone, 2f);
             hasSpawnedEffect = true;
 
@@ -56,7 +56,7 @@ public class AttackAnimBehavior : StateMachineBehaviour
         {
             if (fight.hasHit && !hasSpawnedEffect)
             {
-                GameObject clone = Instantiate(animator.GetComponent<BrawlMove>().player.attackEffects[1], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
+                GameObject clone = Instantiate(fight.player.attackEffects[1], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
                 Destroy(clone, 2f);
                 hasSpawnedEffect = true;
             }

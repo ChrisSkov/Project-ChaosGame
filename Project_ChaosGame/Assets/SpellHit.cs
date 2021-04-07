@@ -24,13 +24,14 @@ public class SpellHit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !hasSpawnedEffect)
         {
-            other.gameObject.GetComponent<BrawlHealth>().TakeSpellDamage(mySpell);
-            mySpell.SpawnCollissionEffect(other.gameObject.transform);
             hasSpawnedEffect = true;
+            other.gameObject.GetComponent<BrawlHealth>().TakeSpellDamage(mySpell);
+            mySpell.SpawnCollissionEffect(effectPos);
             Destroy(gameObject);
         }
-        if (other.gameObject.tag != "Ground")
+        else if (other.gameObject.tag != "Ground")
         {
+            hasSpawnedEffect = true;
             mySpell.SpawnCollissionEffect(effectPos);
             Destroy(gameObject);
         }

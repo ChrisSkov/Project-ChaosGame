@@ -221,13 +221,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823572564918927091}
-  m_LocalRotation: {x: -0.7402549, y: -0.24359792, z: 0.59647, w: 0.19211021}
-  m_LocalPosition: {x: 0.00477, y: 0.00049, z: 0.00139}
-  m_LocalScale: {x: 0.22215183, y: 0.22215183, z: 0.2221519}
+  m_LocalRotation: {x: -0.6720524, y: -0.27530763, z: 0.6640527, w: 0.17772259}
+  m_LocalPosition: {x: 0.00757, y: 0.00178, z: 0.0005}
+  m_LocalScale: {x: 0.29159603, y: 0.29159603, z: 0.2915961}
   m_Children: []
   m_Father: {fileID: 4257859503411533804}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.282, y: -93.173, z: 142.338}
 --- !u!33 &1425438073381333132
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -548,7 +548,19 @@ MonoBehaviour:
     m_ActionId: ad50e03f-be68-4044-8156-fb9705837ed1
     m_ActionName: Menu Controls/Submit[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8078660249706426315}
+        m_TargetAssemblyTypeName: BrawlController, Assembly-CSharp
+        m_MethodName: OnLightAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4d398769-3b71-49e9-853b-e3e74ff4da2d
     m_ActionName: Menu Controls/Cancel[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
@@ -683,6 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468fcd67dc7718946941d0157044a7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpell: {fileID: 0}
   spellCastPos: {fileID: 4257859503411533804}
 --- !u!1 &3754449224887268143
 GameObject:
