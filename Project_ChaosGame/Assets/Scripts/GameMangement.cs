@@ -1,8 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class GameMangement : MonoBehaviour
 {
     public PlayerInputManager instance;
@@ -12,6 +11,7 @@ public class GameMangement : MonoBehaviour
     public bool brawl = true;
     public int myIndex = 0;
     public GameObject[] playerPrefabs;
+    public GameObject selectCharUI;
 
     public PlayerInput currentPlayerInput;
     // Start is called before the first frame update
@@ -23,8 +23,10 @@ public class GameMangement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(currentPlayerInput.currentActionMap);
+//        print(currentPlayerInput.currentActionMap);
     }
+
+    public Func<PlayerInput> onCreatePlayer { get; set; }
 
     public void OnJoinGame(PlayerInput input)
     {
@@ -36,6 +38,10 @@ public class GameMangement : MonoBehaviour
         //     }
         HandleSpawnPlayerPosition(input);
         currentPlayerInput = input;
+        if(instance.playerCount == instance.maxPlayerCount)
+        {
+            selectCharUI.SetActive(false);
+        }
     }
 
     private void HandleSpawnPlayerPosition(PlayerInput input)
@@ -48,21 +54,26 @@ public class GameMangement : MonoBehaviour
         }
     }
 
+
+    public void CreatePlayer(PlayerInput input)
+    {
+
+    }
     public void OnSelectChar(int playerPrefabIndex)
     {
 
-        myIndex = playerPrefabIndex;
-        if (myIndex == 0)
-        {
-            currentPlayerInput.GetComponent<SelectCharacter>().mage = true;
-            currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
-            currentPlayerInput = null;
-        }
-        if (myIndex == 1)
-        {
-            currentPlayerInput.GetComponent<SelectCharacter>().warrior = true;
-            currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
-            currentPlayerInput = null;
-        }
+        // myIndex = playerPrefabIndex;
+        // if (myIndex == 0)
+        // {
+        //     currentPlayerInput.GetComponent<SelectCharacter>().mage = true;
+        //     currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
+        //     currentPlayerInput = null;
+        // }
+        // if (myIndex == 1)
+        // {
+        //     currentPlayerInput.GetComponent<SelectCharacter>().warrior = true;
+        //     currentPlayerInput.SwitchCurrentActionMap(currentPlayerInput.defaultActionMap);
+        //     currentPlayerInput = null;
+        // }
     }
 }
