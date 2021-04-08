@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BrawlHealth : MonoBehaviour
 {
-    public BrawlScriptObj player;
     public Transform bloodPos;
     public float currentHealth;
     public bool isDead = false;
@@ -14,18 +13,20 @@ public class BrawlHealth : MonoBehaviour
     public Text hpText;
     AudioSource source;
     public float takeDmgVolume = 0.18f;
-
+    BrawlScriptObj player;
     // Start is called before the first frame update
     void Start()
     {
-
         source = GetComponent<AudioSource>();
         player.gameOver = false;
         currentHealth = player.maxHealth;
         hpSlider.maxValue = player.maxHealth;
         UpdateHealthUI();
     }
-
+    public void SetPlayer(BrawlScriptObj newPlayer)
+    {
+        player = newPlayer;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -6,12 +6,16 @@ public class AttackAnimBehavior : StateMachineBehaviour
 {
 
     public BrawlAttackScriptObj myAttack;
-
+    BrawlController control;
     KirkFu fight;
+    Transform playerTransform;
     bool hasSpawnedEffect = false;
     public bool effect = false;
     public bool effectChill = false;
     bool audioHasPlayed = false;
+
+    public int finisherVFXIndex = 1;
+    public int autoAttackVFXIndex = 2;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -21,6 +25,7 @@ public class AttackAnimBehavior : StateMachineBehaviour
 
     private void GetKirkFuAndSetDamage(Animator animator)
     {
+        control = animator.gameObject.GetComponent<BrawlController>();
         fight = animator.gameObject.GetComponent<KirkFu>();
         fight.SetCurrentDamage(myAttack);
     }
@@ -36,6 +41,8 @@ public class AttackAnimBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        playerTransform = animator.gameObject.transform;
+
         if (!fight.hasHit)
         {
             fight.TurnColliderOnForSeconds(myAttack.turnOnColliderTime, myAttack.turnOffColliderTime);
@@ -45,22 +52,26 @@ public class AttackAnimBehavior : StateMachineBehaviour
             fight.PlayImpactSound();
             audioHasPlayed = true;
         }
-        if (effectChill && !hasSpawnedEffect && fight.hasHit)
-        {
-            GameObject clone = Instantiate(fight.player.attackEffects[2], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
-            Destroy(clone, 2f);
-            hasSpawnedEffect = true;
 
-        }
-        if (effect)
+        if (!hasSpawnedEffect && fight.hasHit)
         {
-            if (fight.hasHit && !hasSpawnedEffect)
+            if (effectChill)
             {
-                GameObject clone = Instantiate(fight.player.attackEffects[1], animator.gameObject.transform.GetChild(6).position, animator.gameObject.transform.rotation);
-                Destroy(clone, 2f);
-                hasSpawnedEffect = true;
+                SpawnEffect(autoAttackVFXIndex);
+            }
+            if (effect)
+            {
+                SpawnEffect(finisherVFXIndex);
+
             }
         }
+    }
+
+    private void SpawnEffect(int myIndex)
+    {
+        GameObject clone = Instantiate(control.GetCharacter().attackEffects[myIndex], playerTransform.GetChild(6).position, playerTransform.rotation);
+        Destroy(clone, 2f);
+        hasSpawnedEffect = true;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

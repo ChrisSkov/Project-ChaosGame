@@ -2,29 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+[RequireComponent(typeof(BrawlHealth), typeof(BrawlMove), typeof(BrawlAnim))]
 public class BrawlController : MonoBehaviour
 {
     BrawlHealth brawlHealth;
-    BrawlMove playerMove;
+    BrawlMove brawlMove;
     BrawlAnim brawlAnim;
+    KirkFu brawlFight = null;
+
     private Vector3 smoothInputMovement;
     private Vector3 rawInputMovement;
-    public BrawlScriptObj brawlerTattie;
+    public BrawlScriptObj player;
     PlayerInput playerInput;
     //Action Maps
     private string actionMapPlayerControls = "Player";
     private string actionMapMenuControls = "Menu";
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    HandleCharacterChange characterChange;
+    // Start is called before the first frame update
+    void Awake()
+    {
+        characterChange = GetComponent<HandleCharacterChange>();
+        SetUpScripts();
+        playerInput.SwitchCurrentActionMap(playerInput.defaultActionMap);
+        ChangeClass(player);
+    }
+
+    private void SetUpScripts()
+    {
+        brawlFight = GetComponent<KirkFu>();
         playerInput = GetComponent<PlayerInput>();
         brawlHealth = GetComponent<BrawlHealth>();
         brawlAnim = GetComponent<BrawlAnim>();
-        playerMove = GetComponent<BrawlMove>();
-        playerInput.SwitchCurrentActionMap(playerInput.defaultActionMap);
+        brawlMove = GetComponent<BrawlMove>();
+    }
 
+    public void ChangeClass(BrawlScriptObj myPlayer)
+    {
+        brawlFight.SetPlayer(myPlayer);
+        brawlHealth.SetPlayer(myPlayer);
+        brawlMove.SetPlayer(myPlayer);
     }
 
     // Update is called once per frame
@@ -39,10 +56,17 @@ public class BrawlController : MonoBehaviour
         }
     }
 
+    public void OnChooseChar(InputAction.CallbackContext ctx)
+    {
+        characterChange.ChangeToWizard();
+    }
+    public void OnChooseChar1(InputAction.CallbackContext ctx)
+    {
+        characterChange.ChangeToWarrior();
+    }
 
     public void OnLightAttack(InputAction.CallbackContext ctx)
     {
-        print("satan");
         if (ctx.performed)
         {
             brawlAnim.PlayLightAttackAnim();
@@ -67,12 +91,12 @@ public class BrawlController : MonoBehaviour
     void CalculateMovementInputSmoothing()
     {
 
-        smoothInputMovement = Vector3.Lerp(smoothInputMovement, rawInputMovement, Time.deltaTime * brawlerTattie.moveSmoothing);
+        smoothInputMovement = Vector3.Lerp(smoothInputMovement, rawInputMovement, Time.deltaTime * player.moveSmoothing);
     }
 
     void UpdatePlayerMovement()
     {
-        playerMove.UpdateMovementData(smoothInputMovement);
+        brawlMove.UpdateMovementData(smoothInputMovement);
     }
 
     void UpdatePlayerAnimationMovement()
@@ -97,5 +121,10 @@ public class BrawlController : MonoBehaviour
     public void EnablePauseMenuControls()
     {
         playerInput.SwitchCurrentActionMap(actionMapMenuControls);
+    }
+
+    public BrawlScriptObj GetCharacter()
+    {
+        return player;
     }
 }

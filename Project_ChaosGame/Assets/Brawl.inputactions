@@ -76,6 +76,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "ChooseChar",
+                    "type": "Button",
+                    "id": "ad1bc130-c2a9-40b2-949a-4db20a7f115c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "ChooseChar1",
+                    "type": "Button",
+                    "id": "2c476709-93bf-4c7c-9ad2-944650f4f204",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
@@ -318,6 +334,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5cca22de-d33e-4018-a50b-13af6bd6552d",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChooseChar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7cfd3c8f-5b3b-40fe-b044-80a1f6ae6bea",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChooseChar1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -10,17 +10,21 @@ public class KirkFu : MonoBehaviour
     public bool hasHit = false;
     AudioSource source;
     BrawlAttackScriptObj currentAtkObj;
-    public BrawlScriptObj player;
+    BrawlScriptObj player;
     public float impactVolume = 0.08f;
-    public float defaultVolume = 0.5f; 
+    public float defaultVolume = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
+
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
         myCollider = GetComponentInChildren<MeshCollider>();
     }
-
+    public void SetPlayer(BrawlScriptObj newPlayer)
+    {
+        player = newPlayer;
+    }
     public void TurnColliderOnForSeconds(float startTime, float endTime)
     {
         float animRealTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
@@ -33,7 +37,7 @@ public class KirkFu : MonoBehaviour
         {
             myCollider.enabled = true;
         }
-        
+
     }
 
     public void PlayImpactSound()

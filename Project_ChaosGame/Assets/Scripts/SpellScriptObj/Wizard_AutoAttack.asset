@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wizard_AutoAttack
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 3319083753328944506, guid: 9b02b69bcdc34a742a1d950c2866f2bb, type: 3}
-  force: 8
-  damage: 5
+  force: 12
+  damage: 10
   damageRadius: 2
   spawnTime: 0.5
   lifeTime: 1.3

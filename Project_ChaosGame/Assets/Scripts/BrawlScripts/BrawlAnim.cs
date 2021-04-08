@@ -14,23 +14,26 @@ public class BrawlAnim : MonoBehaviour
     private int deadAnimID;
     public float exitTime = 0.4f;
     BrawlMove move;
+    bool setUp = false;
     // Start is called before the first frame update
     void Start()
     {
 
         SetupAnimationIDs();
         move = GetComponent<BrawlMove>();
-        // anim = GetComponent<Animator>();
+       // anim = GetComponent<Animator>();
     }
     void SetupAnimationIDs()
     {
         brawlMoveAnimID = Animator.StringToHash("forwardSpeed");
         deadAnimID = Animator.StringToHash("Death");
-
-
     }
     private void Update()
     {
+        if (!setUp)
+        {
+            SetupAnimationIDs();
+        }
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
         {
             //move.canMove = false;

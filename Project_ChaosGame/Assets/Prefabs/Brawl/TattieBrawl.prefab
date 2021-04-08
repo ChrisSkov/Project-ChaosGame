@@ -210,11 +210,11 @@ GameObject:
   - component: {fileID: 3126624281745964782}
   - component: {fileID: 3585357074320060360}
   - component: {fileID: 3126624281745964786}
-  - component: {fileID: 6198242377225907856}
   - component: {fileID: 8486732640630594052}
   - component: {fileID: 8486732640630594051}
   - component: {fileID: 8486732640630594050}
   - component: {fileID: 520148949759824016}
+  - component: {fileID: 6198242377225907856}
   m_Layer: 6
   m_Name: TattieBrawl
   m_TagString: Player
@@ -521,27 +521,43 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c70445c8-255e-4864-8a0c-8bdbd123519d
     m_ActionName: Player/HeavyAttack[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8486732640630594052}
+        m_TargetAssemblyTypeName: BrawlController, Assembly-CSharp
+        m_MethodName: OnChooseChar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad1bc130-c2a9-40b2-949a-4db20a7f115c
+    m_ActionName: Player/ChooseChar[/DualShock4GamepadHID/dpad/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8486732640630594052}
+        m_TargetAssemblyTypeName: BrawlController, Assembly-CSharp
+        m_MethodName: OnChooseChar1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2c476709-93bf-4c7c-9ad2-944650f4f204
+    m_ActionName: Player/ChooseChar1[/DualShock4GamepadHID/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6198242377225907856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126624281745964776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c15ae78194b78245a4e282e0ad2a649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasHit: 0
-  player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
-  impactVolume: 0.08
-  defaultVolume: 0.5
 --- !u!114 &8486732640630594052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30360a87e2aba264a93fcaa95a54e0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brawlerTattie: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
+  player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
 --- !u!114 &8486732640630594051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7496857997f8f4ab8e562d27e52877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 3126624281745964787}
   exitTime: 0.32
 --- !u!114 &8486732640630594050
 MonoBehaviour:
@@ -581,7 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347cb9763c4101f41bf66c406b28db64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
   bloodPos: {fileID: 1735832935}
   currentHealth: 0
   isDead: 0
@@ -600,11 +614,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d435ec893cc16084194d2a45f278e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
   canMove: 1
   currentSpeed: 0
   fadeInMultiplier: 0.5
   fadeOutMultiplier: 0.35
+--- !u!114 &6198242377225907856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126624281745964776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c15ae78194b78245a4e282e0ad2a649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasHit: 0
+  player: {fileID: 11400000, guid: 4dd04705ad7860345bf0551bd2edfc0d, type: 2}
+  impactVolume: 0.08
+  defaultVolume: 0.5
 --- !u!1 &3585357073280556314
 GameObject:
   m_ObjectHideFlags: 0

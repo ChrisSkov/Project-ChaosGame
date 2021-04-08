@@ -6,41 +6,51 @@ using UnityEngine.InputSystem;
 public class SelectCharacter : MonoBehaviour
 {
 
-     PlayerInput myInput;
-     BrawlScriptObj myPlayer;
+    PlayerInput myInput;
+    BrawlScriptObj myPlayer;
     public bool mage = false;
     public bool warrior = false;
+    public bool hasSelectedChar = false;
+    public bool charSelectMove = false;
     // Start is called before the first frame update
     void Start()
     {
         myInput = GetComponent<PlayerInput>();
+        if (mage)
+        {
+            ChooseMage();
+        }
+        if (warrior)
+        {
+            ChooseWarrior();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (mage)
+        if (!warrior && !mage)
         {
-          //  myInput.DeactivateInput();
-            transform.GetChild(0).gameObject.SetActive(true);
-            GetScripts(0);
+            hasSelectedChar = false;
         }
-        if (warrior)
+        else
         {
-            //myInput.DeactivateInput();
-            GetScripts(1);
-            transform.GetChild(1).gameObject.SetActive(true);
+            hasSelectedChar = true;
         }
     }
 
-    public void GetScripts(int child)
+    public void ChooseWarrior()
     {
-       myPlayer = transform.GetChild(child).GetComponent<BrawlHealth>().player;
-       GetComponent<BrawlHealth>().player = myPlayer;
-       GetComponent<BrawlMove>().player = myPlayer;
-       GetComponent<KirkFu>().player = myPlayer;
-       GetComponent<BrawlController>().brawlerTattie = myPlayer;
-       GetComponent<BrawlAnim>().anim = transform.GetChild(child).GetComponent<Animator>();
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+        charSelectMove = true;
+    }
+
+    public void ChooseMage()
+    {
+
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+        charSelectMove = true;
     }
 }

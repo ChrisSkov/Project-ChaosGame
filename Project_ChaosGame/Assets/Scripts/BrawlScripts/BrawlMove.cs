@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BrawlMove : MonoBehaviour
 {
-    public BrawlScriptObj player;
+    BrawlScriptObj player;
     public bool canMove = true;
-
     public float currentSpeed;
     Camera mainCamera;
     Vector3 movementDirection;
@@ -21,7 +20,10 @@ public class BrawlMove : MonoBehaviour
         mainCamera = Camera.main;
 
     }
-
+    public void SetPlayer(BrawlScriptObj newPlayer)
+    {
+        player = newPlayer;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
